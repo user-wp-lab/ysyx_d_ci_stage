@@ -18,7 +18,8 @@ LDFLAGS   += --gc-sections -e _start
 #运行用soc的bin运行nemu，测试cachesim，启动时要打开nemu的E选项，以及各个存储空间，flash改为0x30000000开头
 #$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 NPCFLAGS += -b
-NPCFLAGS += -f $(IMAGE).elf
+# NPCFLAGS += -f $(IMAGE).elf
+ADD_FLAGS = $(YSYXSOC_HOME)/ready-to-run/D-stage/new.bin
 
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 .PHONY: $(AM_HOME)/am/src/riscv/ysyxSoC/trm.c 
@@ -29,7 +30,7 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
 run: image
-	$(MAKE) -C $(NPC_HOME) run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+	$(MAKE) -C $(NPC_HOME) run ARGS="$(NPCFLAGS)" IMG=$(ADD_FLAGS)
 
 gdb: image
 	$(MAKE) -C $(NPC_HOME) gdb ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
