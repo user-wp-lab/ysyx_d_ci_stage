@@ -1,4 +1,4 @@
-STUID = ysyx_23060206
+STUID = ysyx_25080202
 STUNAME = wang pei
 
 # DO NOT modify the following code!!!
