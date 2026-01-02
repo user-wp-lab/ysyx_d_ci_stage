@@ -5,137 +5,135 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 size_t strlen(const char *s) {
-  	int count = 0;
-	while(s[count] != '\0')
-	{
-		count++;
-	}
-	return count;
-	//panic("Not implemented");
+  size_t n=0;
+  if(s==NULL){return 0;}
+  while(s[n]!='\0'){
+	  n++;
+  }
+  return n;
 }
 
 char *strcpy(char *dst, const char *src) {
-	char *ret = dst;
-	while(*src)
-	{
-		*dst = *src;
-		dst++;
+	if(src==NULL){return dst;}
+	char *reg=dst;
+	while(*src!='\0'){
+		*reg=*src;
+		reg++;
 		src++;
 	}
-	*dst = '\0';
-	return ret;
-	//panic("Not implemented");
+	*reg='\0';
+	return dst;
 }
 
 char *strncpy(char *dst, const char *src, size_t n) {
-    char *ret = dst;
-    size_t i;
-    for (i = 0; i < n && src[i] != '\0'; i++) {
-        dst[i] = src[i];
-    }
-
-    for (; i < n; i++) {
-        dst[i] = '\0';
-    }
-    return ret;
-	// panic("Not implemented");
+  if(src==NULL){return dst;}
+  char *reg=dst;
+  size_t i;
+  for(i=0;i<n;i++){
+	  if(src[i]=='\0'){dst[i]='\0';break;}
+	  dst[i]=src[i];
+  }
+  if(i==n){dst[i]='\0';}
+  return reg;
 }
 
 char *strcat(char *dst, const char *src) {
-  	char *ret = dst;
-	int cnt = 0;
-	while(dst[cnt])
-	{
-		cnt++;
-	}
-	while(*src)
-	{
-		dst[cnt] = *src;
-		cnt++;
+	char *reg=dst;
+	while(*reg!='\0'){
+		reg++;
+		}
+	while(*src!='\0'){
+		*reg=*src;
+		reg++;
 		src++;
 	}
-	dst[cnt] = '\0';
-	return ret;
-	//panic("Not implemented");
+	*reg='\0';
+	return dst;
 }
 
 int strcmp(const char *s1, const char *s2) {
-    while (*s1 && (*s1 == *s2)) {
-        s1++;
-        s2++;
-    }
-    return *(unsigned char *)s1 - *(unsigned char *)s2;
+  size_t i=0;
+  while(s1[i]!='\0'&&s2[i]!='\0'){
+	  if(s1[i]==s2[i]){i++;continue;}
+	  else{
+		  if(s1[i]>s2[i]){return 1;}
+		  else{return -1;}
+	  }
+  }
+  if(s1[i]!='\0'&&s2[i]=='\0'){return 1;}
+  if(s1[i]=='\0'&&s2[i]!='\0'){return -1;}
+  return 0;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {
-    while (n && *s1 && (*s1 == *s2)) {
-        s1++;
-        s2++;
-        n--;
-    }
-    if (n == 0) {
-        return 0;
-    }
-    return *(unsigned char *)s1 - *(unsigned char *)s2;
-	//panic("Not implemented");
+  size_t i=0;
+  for(i=0;i<n;i++){
+	  if(s1[i]=='\0'&&s2[i]!='\0'){return -1;}
+	  if(s1[i]!='\0'&&s2[i]=='\0'){return 1;}
+	  if(s1[i]=='\0'&&s2[i]=='\0'){return 0;}
+	  if(s1[i]==s2[i]){continue;}
+	  else{
+		  if(s1[i]>s2[i]){return 1;}
+		  else{return -1;}
+	  }
+  }
+  return 0;
+
 }
 
 void *memset(void *s, int c, size_t n) {
-    unsigned char *p = (unsigned char *)s;
-    while (n--) {
-        *p++ = (unsigned char)c;
-    }
-    return s;
-	//panic("Not implemented");
+	char *r=(char *)s;
+	while(n--){
+		*(r++)=c;
+	}
+	return s;
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
-  	unsigned char *d = (unsigned char *)dst;
-	const unsigned char *s = (const unsigned char *)src;
-	if(d > s)
-	{
-		d+=n;
-		s+=n;
-		while(n--)
-		{
-			*(--d) = *(--s);
+	if(dst<src){
+		char *d=(char *)dst;
+		char *s=(char *)src;
+		while(n){
+			*d=*s;
+			d++;
+			s++;
+			n--;
 		}
-	}
-	else 
-	{
-		while(n--)
-		{
-			*d++ = *s++;
+	}else{
+		char *d=(char *)(dst+n-1);
+		char *s=(char *)(src+n-1);
+		while(n--){
+			*d--=*s--;
 		}
 	}
 	return dst;
-	//panic("Not implemented");
 }
 
+
 void *memcpy(void *out, const void *in, size_t n) {
-  	unsigned char *p = (unsigned char *)out;
-	const unsigned char *s = (const unsigned char *)in;
-	while(n--)
-	{
-		*p++ = *s++;
-	}	
+	char *o=(char *)out;
+	char *i=(char *)in;
+	while(n){
+		*o=*i;
+		o++;
+		i++;
+		n--;
+	}
 	return out;
-	//panic("Not implemented");
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-  	const unsigned char *s1_p = (const unsigned char *)s1;
-    const unsigned char *s2_p = (const unsigned char *)s2;
-    
-    while (n--) {
-        if (*s1_p != *s2_p) {
-            return (*s1_p - *s2_p);
-        }
-        s1_p++;
-        s2_p++;
-    }
-    return 0;
-	//panic("Not implemented");
+	char *x=(char *)s1;
+	char *y=(char *)s2;
+	size_t i;
+	for(i=0;i<n;i++){
+		if(x[i]==y[i]){continue;}
+		else{
+			if(x[i]<y[i]){return -1;}
+			else{return 1;}
+		}
+	}
+	return 0;
 }
 
 #endif

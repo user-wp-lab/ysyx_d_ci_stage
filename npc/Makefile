@@ -1,192 +1,72 @@
-MODULE = ysyxSoCFull
-IMG ?= 
+all:
+	@echo "Write this Makefile by your self."
+WORK_DIR  = $(shell pwd)
+VSRCS = $(shell find ./vsrc -name "*.v" -or -name "*.sv")
+VSRCS += $(shell find ../ysyxSoC/perip -name "*.v")
+VSRCS += ../ysyxSoC/ready-to-run/D-stage/ysyxSoCFull.v
+CSRCS = $(shell find ./csrc -name "*.c" -or -name "*.cc" -or -name "*.cpp")
+INC_PATH += $(WORK_DIR)/csrc/include
+INCFLAGS += $(addprefix -I, $(INC_PATH))
 
-ifeq ($(VERILATOR_ROOT),)
-VERILATOR = verilator
-VERILATOR_COVERAGE = verilator_coverage
-else
-export VERILATOR_ROOT
-VERILATOR = $(VERILATOR_ROOT)/bin/verilator
-VERILATOR_COVERAGE = $(VERILATOR_ROOT)/bin/verilator_coverage
-endif
+INC_PATH_VER += ../ysyxSoC/perip/uart16550/rtl ../ysyxSoC/perip/spi/rtl
+INCFLAGS_VER += $(foreach v,$(INC_PATH_VER),-I$(v))
 
-CXXFLAGS += -g       ###调试使用
-CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
+#CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
+CXXFLAGS += $(INCFLAGS) #-DTRACE #I/usr/lib/llvm-14/include -std=c++14   -fno-exceptions -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
 
-DIFF_LIBS += $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
-LLVM_LIBS += $(shell llvm-config --libs)
-LDFLAGS += -lasan $(LLVM_LIBS) -lreadline 
+TOP_NAME = ysyxSoCFull#-------------------top_name
+EX_CMD := $(addprefix ./obj_dir/V, $(TOP_NAME))
 
-INCLUDE_FLAGS += -I$(YSYXSOC_HOME)/perip/uart16550/rtl
-INCLUDE_FLAGS += -I$(YSYXSOC_HOME)/perip/spi/rtl
+LIBS += -lreadline $(shell llvm-config --libs)
+#LIBS += $(shell llvm-config --libs)
 
-# VERILATOR_FLAGS += -Wall
-VERILATOR_FLAGS += --trace
-VERILATOR_FLAGS += --assert
-VERILATOR_FLAGS += --top-module $(MODULE)
-VERILATOR_FLAGS += -cc --exe
-VERILATOR_FLAGS += $(INCLUDE_FLAGS)
-VERILATOR_FLAGS += -CFLAGS "$(CXXFLAGS) -U__STDC_FORMAT_MACROS"
-VERILATOR_FLAGS += -LDFLAGS "$(LDFLAGS)"
-VERILATOR_FLAGS += --build 
-VERILATOR_FLAGS += -MMD
-VERILATOR_FLAGS += -j 4
-VERILATOR_FLAGS += --timescale "1ns/1ns"
-VERILATOR_FLAGS += --no-timing
-VERILATOR_FLAGS += --autoflush
-# VERILATOR_FLAGS += --trace-fst
-#VERILATOR_FLAGS += -x-assign fast
-#VERILATOR_FLAGS += --coverage
-#VERILATOR_FLAGS += --debug
-#VERILATOR_FLAGS += --gdbbt 
-#VERILATOR_FLAGS += -Iobj_dir
 
-VERILOG_SOURCES = $(wildcard vsrc/*.v)
-VERILOG_SOURCES += $(shell find /home/wp/Desktop/ysyx-workbench/ysyxSoC/perip/ -name "*.v")
-VERILOG_SOURCES += $(shell find /home/wp/Desktop/ysyx-workbench/ysyxSoC/ready-to-run/D-stage -name "*.v")
+LIB := $(foreach a,$(LIBS),-LDFLAGS $(a))
+FLAGS := $(foreach b,$(CXXFLAGS),-CFLAGS $(b))
+sim:
+	
+# 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+	@echo $(VSRCS)
+	verilator --trace --cc --exe --build --autoflush $(INCFLAGS_VER) --timescale "1ns/1ns" --no-timing --Wno-WIDTHEXPAND\
+    --top-module $(TOP_NAME) \
+    $(CSRCS) $(VSRCS) \
+	$(LIB) $(FLAGS)
+ 
+#  IMG ?= /home/zjt/npc-test-ci/ysyx-workbench/npc/fceux-minirv-npc.bin
+IMG ?= /home/wp/Desktop/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-minirv-npc.bin
+# /home/wp/Desktop/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-minirv-npc.bin
+run: sim
+	$(EX_CMD) $(ARGS) $(IMG)
+	#rm -rf obj_dir
+	#rm waveform.vcd
 
-CPP_SOURCES = $(wildcard csrc/*.cpp)
-CPP_SOURCES += csrc/disasm.cc
-
-VERILATOR_INPUT = $(VERILOG_SOURCES) $(CPP_SOURCES)
-
-IMG ?=
-ARGS ?=
-TARGET := $(subst ",,$(ARGS))
-TARGET += --log=$(NPC_HOME)/npc-log.txt
-TARGET += --diff=$(DIFF_LIBS)
-
-BUILD_DIR = $(shell pwd)
-BINARY = $(BUILD_DIR)/obj_dir/V$(MODULE)
-
-NPC_EXEC := $(BINARY) $(TARGET) $(IMG)
-
-.PHONY:run build waves
-waves: 
-	@gtkwave waveform.vcd
-
-run: build
-	@echo "###  Running NPC  ###"
-	@echo "./obj_dir/V${MODULE} ${NPC_EXEC}"
-	$(NPC_EXEC)
-
-build:
-	@echo "--------  Verilator --------"
-	@rm -rf ./obj_dir
-	@rm -rf waveform.vcd
-	@echo "${VERILATOR} ${VERILATOR_FLAGS} ${VERILATOR_INPUT}"
-	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
-
-gdb: build
-	gdb --args $(NPC_EXEC) 
-
-default: build
-
-.PHONY:lint
-lint: $(VERILOG_SOURCES)
-	verilator --lint-only -Wall $(VERILOG_SOURCES)
-
-.PHONY: clean
+# NETLIST=yyy
+# CELLS=zzz
+IVL_TOP_MODULE ?= tb
+IVL_SRC_VER = $(shell find ./vsrc -name "*.v" -or -name "*.sv")
+IVL_SRC_TB = $(shell find ./testbench -name "*.v")
+IVL_SRC  = $(IVL_SRC_VER) $(IVL_SRC_TB)
+VVP_FILE   = sim.vvp
+VCD_FILE   = wave.vcd
+IVL_FLAGS  = -g2012 -Wall -Winfloop -DCOSIM_XCHECK  # -g2012启用Verilog 2012标准，-Wall开启警告
+VVP_FLAGS  = -v -n  # -v显示详细仿真日志，-n启用四值仿真严格检查
+IMG_HEX    = test.hex 
+LOAD_ADDR ?= 0x00000000
+OBJCOPY    = riscv64-linux-gnu-objcopy
+sim-iverilog:
+	@$(OBJCOPY) -I binary -O verilog --adjust-vma=$(LOAD_ADDR) $(IMG) $(IMG_HEX)
+	@echo "========== 编译Verilog文件（启用四值仿真）=========="
+	@echo $(IVL_SRC)
+	iverilog $(IVL_FLAGS) -s $(IVL_TOP_MODULE) -o $(VVP_FILE) $(IVL_SRC)
+	@echo "编译完成，生成文件：$(VVP_FILE)"
+	@echo "========== 执行四值仿真 =========="
+	vvp $(VVP_FLAGS) $(VVP_FILE)
+	@echo "仿真完成，生成波形文件：$(VCD_FILE)"
+	@echo "========== 打开波形文件 =========="
+	gtkwave $(VCD_FILE) 
+ 
 clean:
-	rm -rf ./obj_dir
-	rm -rf npc-log.txt
-	rm -rf waveform.vcd
-
-
-# TOPNAME = ysyxSoCFull
-# IMG ?= 
-# INC_PATH ?=
-# NXDC_FILES = constr/top.nxdc
-
-# ifeq ($(VERILATOR_ROOT),)
-# VERILATOR = verilator
-# VERILATOR_COVERAGE = verilator_coverage
-# else
-# export VERILATOR_ROOT
-# VERILATOR = $(VERILATOR_ROOT)/bin/verilator
-# VERILATOR_COVERAGE = $(VERILATOR_ROOT)/bin/verilator_coverage
-# endif
-
-# VERILATOR_FLAGS += -MMD
-# VERILATOR_FLAGS += --build
-# VERILATOR_FLAGS += -cc
-# VERILATOR_FLAGS += --trace
-# VERILATOR_FLAGS += --assert
-# VERILATOR_FLAGS += -j 4
-# VERILATOR_FLAGS += --timescale "1ns/1ns"
-# VERILATOR_FLAGS += --no-timing
-# VERILATOR_FLAGS += --autoflush
-
-# BUILD_DIR = ./build
-# BIN = $(BUILD_DIR)/$(TOPNAME)
-
-# default: $(BIN)
-
-# $(shell mkdir -p $(BUILD_DIR))
-
-# SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
-# $(SRC_AUTO_BIND): $(NXDC_FILES)
-# 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
-
-# VSRCS = $(wildcard vsrc/*.v)
-# VSRCS += $(shell find /home/wp/Desktop/ysyx-workbench/ysyxSoC/perip/ -name "*.v")
-# VSRCS += $(shell find /home/wp/Desktop/ysyx-workbench/ysyxSoC/build/ -name "*.v")
-
-# CSRCS = $(wildcard csrc/*.cpp)
-# CSRCS += csrc/disasm.cc
-# CSRCS += $(SRC_AUTO_BIND)
-
-# INCLUDE_FLAGS += -I$(YSYXSOC_HOME)/perip/uart16550/rtl
-# INCLUDE_FLAGS += -I$(YSYXSOC_HOME)/perip/spi/rtl
-
-# include $(NVBOARD_HOME)/scripts/nvboard.mk
-
-# INCFLAGS = $(addprefix -I, $(INC_PATH))
-# INCFLAGS += -I$(NVBOARD_HOME)/include
-
-# CXXFLAGS += -g       ###调试使用
-# CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
-# CXXFLAGS += $(INCFLAGS)
-# CXXFLAGS += -fsanitize=leak
-# # CXXFLAGS += -fsanitize=address
-
-# DIFF_LIBS += $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
-# LLVM_LIBS += $(shell llvm-config --libs)  
-# LDFLAGS += $(LLVM_LIBS) -lreadline 
-
-# IMG ?=
-# ARGS ?=
-# TARGET := $(subst ",,$(ARGS))
-# TARGET += --log=$(NPC_HOME)/npc-log.txt
-# TARGET += --diff=$(DIFF_LIBS)
-
-# NPC_EXEC := $(BIN) $(TARGET) $(IMG)
-
-# .PHONY:run waves lint clean
-
-# clean:
-# 	rm -rf ./build/*
-# 	rm -rf npc-log.txt
-# 	rm -rf waveform.vcd
-
-# waves: 
-# 	@gtkwave waveform.vcd
-
-# $(BIN): $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
-# 	@echo "--------  Verilator --------"
-# 	$(VERILATOR) $(VERILATOR_FLAGS) $(INCLUDE_FLAGS) \
-# 		--top-module $(TOPNAME) $^ \
-# 		$(addprefix -CFLAGS , $(CXXFLAGS)) -CFLAGS -U__STDC_FORMAT_MACROS \
-# 		$(addprefix -LDFLAGS , $(LDFLAGS)) \
-# 		--Mdir $(BUILD_DIR) --exe -o $(abspath $(BIN))
-
-# run: clean $(BIN)
-# 	@echo "###  Running NPC  ###"
-# 	$(NPC_EXEC)
-
-# gdb: build
-# 	gdb --args $(NPC_EXEC) 
-
-# lint: $(VSRCS)
-# 	verilator --lint-only -Wall $(VSRCS)
-
+	rm -rf obj_dir
+	rm -rf $(VVP_FILE) $(VCD_FILE) *.vcd *.vvp *.log 
+ 
+include ../Makefile
