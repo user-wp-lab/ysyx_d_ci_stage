@@ -90,7 +90,7 @@ wire [31:0] addr_lsu;
 assign addr_lsu = (io_lsu_addr>>2) - MEM_BASE;  // 内存访问仍用>>2，串口访问会跳过此逻辑
 // 定义串口地址（匹配C代码中的SERIAL_PORT）
 localparam SERIAL_PORT = 32'h10000000;
-
+localparam SERIAL_RANGE = 32'h10000008;
 always @(posedge clock) begin
   if (reset) begin
     io_lsu_respValid <= 1'b0;
@@ -100,6 +100,7 @@ always @(posedge clock) begin
     // 仅在CPU发起LSU请求时响应（io_lsu_reqValid有效）
     if (io_lsu_reqValid) begin
       if (io_lsu_addr == SERIAL_PORT && io_lsu_wen) begin
+      // if ((io_lsu_addr >= SERIAL_PORT) && (io_lsu_addr <= SERIAL_RANGE) && io_lsu_wen) begin
         // 提取写入的字符（char是8位，取最低字节）
         reg [7:0] putch_char = io_lsu_wdata[7:0];
         // 模拟串口输出字符（$write不换行，贴合串口输出特性）
@@ -107,6 +108,10 @@ always @(posedge clock) begin
         // 可选：打印调试信息，方便排查
         $display("[UART][%0t] 输出字符: '%c' (ASCII=0x%02x)", $time, putch_char, putch_char);
         io_lsu_respValid <= 1'b1;  // 串口写操作响应
+      end
+      else if ((io_lsu_addr >= SERIAL_PORT) && (io_lsu_addr <= SERIAL_RANGE) && io_lsu_wen) begin
+        io_lsu_respValid <= 1'b1;
+        $display("UART_init\n");
       end
       // 原有逻辑：普通内存访问（保留>>2的地址计算）
       else if ((io_lsu_addr >= MEM_BASE) && (io_lsu_addr < MEM_BASE + MEM_SIZE_B)) begin
