@@ -1,0 +1,2440 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.23 (git sha1 7ce5011c24b)
+
+
+-- Executing script file `-' --
+[TCL: yosys -import] Command name collision: found pre-existing command `cd' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `eval' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `exec' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `read' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `trace' -> skip.
+
+1. Executing Verilog-2005 frontend: /home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v
+Parsing SystemVerilog input from `/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v' to AST representation.
+Generating RTLIL representation for module `\gcd'.
+Generating RTLIL representation for module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e'.
+Generating RTLIL representation for module `\RegRst_0x9f365fdf6c8998a'.
+Generating RTLIL representation for module `\GcdUnitDpathRTL_0x4d0fc71ead8d3d9e'.
+Generating RTLIL representation for module `\RegEn_0x68db79c4ec1d6e5b'.
+Generating RTLIL representation for module `\LtComparator_0x422b1f52edd46a85'.
+Generating RTLIL representation for module `\ZeroComparator_0x422b1f52edd46a85'.
+Generating RTLIL representation for module `\Mux_0x683fa1a418b072c9'.
+Generating RTLIL representation for module `\Mux_0xdd6473406d1a99a'.
+Generating RTLIL representation for module `\Subtractor_0x422b1f52edd46a85'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \gcd
+Used module:     \GcdUnitDpathRTL_0x4d0fc71ead8d3d9e
+Used module:         \RegEn_0x68db79c4ec1d6e5b
+Used module:         \Subtractor_0x422b1f52edd46a85
+Used module:         \Mux_0xdd6473406d1a99a
+Used module:         \Mux_0x683fa1a418b072c9
+Used module:         \ZeroComparator_0x422b1f52edd46a85
+Used module:         \LtComparator_0x422b1f52edd46a85
+Used module:     \GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e
+Used module:         \RegRst_0x9f365fdf6c8998a
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \gcd
+Used module:     \GcdUnitDpathRTL_0x4d0fc71ead8d3d9e
+Used module:         \RegEn_0x68db79c4ec1d6e5b
+Used module:         \Subtractor_0x422b1f52edd46a85
+Used module:         \Mux_0xdd6473406d1a99a
+Used module:         \Mux_0x683fa1a418b072c9
+Used module:         \ZeroComparator_0x422b1f52edd46a85
+Used module:         \LtComparator_0x422b1f52edd46a85
+Used module:     \GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e
+Used module:         \RegRst_0x9f365fdf6c8998a
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29 in module Mux_0xdd6473406d1a99a.
+Marked 1 switch rules as full_case in process $proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29 in module Mux_0xdd6473406d1a99a.
+Marked 1 switch rules as full_case in process $proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23 in module Mux_0x683fa1a418b072c9.
+Marked 1 switch rules as full_case in process $proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:352$16 in module RegRst_0x9f365fdf6c8998a.
+Marked 3 switch rules as full_case in process $proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10 in module GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.
+Marked 6 switch rules as full_case in process $proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1 in module GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.
+Removed a total of 1 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 26 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+rejecting switch: rhs not const
+rejecting switch: rhs not const
+rejecting switch: rhs not const
+rejecting switch: rhs not const
+rejecting switch: not enough values
+rejecting switch: rhs not const
+rejecting switch: rhs not const
+rejecting switch: rhs not const
+rejecting switch: has nested switches
+rejecting switch: rhs not const
+rejecting switch: has nested switches
+rejecting switch: rhs not const
+rejecting switch: has nested switches
+Converted 0 switches.
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\Subtractor_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:751$34'.
+Creating decoders for process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$33'.
+Creating decoders for process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29'.
+     1/1: $1$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_DATA[15:0]$32
+Creating decoders for process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$27'.
+Creating decoders for process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23'.
+     1/1: $1$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_DATA[15:0]$26
+Creating decoders for process `\ZeroComparator_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:636$20'.
+Creating decoders for process `\LtComparator_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:606$18'.
+Creating decoders for process `\RegEn_0x68db79c4ec1d6e5b.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:571$17'.
+     1/1: $0\out[15:0]
+Creating decoders for process `\RegRst_0x9f365fdf6c8998a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:352$16'.
+     1/1: $0\out[1:0]
+Creating decoders for process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+     1/22: $3\b_reg_en[0:0]
+     2/22: $3\b_mux_sel[0:0]
+     3/22: $3\a_reg_en[0:0]
+     4/22: $3\a_mux_sel[1:0]
+     5/22: $3\resp_val[0:0]
+     6/22: $3\req_rdy[0:0]
+     7/22: $2\b_reg_en[0:0]
+     8/22: $2\b_mux_sel[0:0]
+     9/22: $2\a_reg_en[0:0]
+    10/22: $2\a_mux_sel[1:0]
+    11/22: $2\resp_val[0:0]
+    12/22: $2\req_rdy[0:0]
+    13/22: $2\do_sub[0:0]
+    14/22: $2\do_swap[0:0]
+    15/22: $1\b_reg_en[0:0]
+    16/22: $1\b_mux_sel[0:0]
+    17/22: $1\a_reg_en[0:0]
+    18/22: $1\a_mux_sel[1:0]
+    19/22: $1\resp_val[0:0]
+    20/22: $1\req_rdy[0:0]
+    21/22: $1\do_swap[0:0]
+    22/22: $1\do_sub[0:0]
+Creating decoders for process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1'.
+     1/6: $6\next_state__0[1:0]
+     2/6: $5\next_state__0[1:0]
+     3/6: $4\next_state__0[1:0]
+     4/6: $3\next_state__0[1:0]
+     5/6: $2\next_state__0[1:0]
+     6/6: $1\next_state__0[1:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\Subtractor_0x422b1f52edd46a85.\out' from process `\Subtractor_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:751$34'.
+No latch inferred for signal `\Mux_0xdd6473406d1a99a.\in_[0]' from process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$33'.
+No latch inferred for signal `\Mux_0xdd6473406d1a99a.\in_[1]' from process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$33'.
+No latch inferred for signal `\Mux_0xdd6473406d1a99a.\out' from process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29'.
+No latch inferred for signal `\Mux_0xdd6473406d1a99a.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_ADDR' from process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29'.
+No latch inferred for signal `\Mux_0xdd6473406d1a99a.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_DATA' from process `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29'.
+No latch inferred for signal `\Mux_0x683fa1a418b072c9.\in_[0]' from process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$27'.
+No latch inferred for signal `\Mux_0x683fa1a418b072c9.\in_[1]' from process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$27'.
+No latch inferred for signal `\Mux_0x683fa1a418b072c9.\in_[2]' from process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$27'.
+No latch inferred for signal `\Mux_0x683fa1a418b072c9.\out' from process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23'.
+No latch inferred for signal `\Mux_0x683fa1a418b072c9.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_ADDR' from process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23'.
+No latch inferred for signal `\Mux_0x683fa1a418b072c9.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_DATA' from process `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23'.
+No latch inferred for signal `\ZeroComparator_0x422b1f52edd46a85.\out' from process `\ZeroComparator_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:636$20'.
+No latch inferred for signal `\LtComparator_0x422b1f52edd46a85.\out' from process `\LtComparator_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:606$18'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\req_rdy' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\resp_val' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\a_mux_sel' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\b_mux_sel' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\b_reg_en' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\a_reg_en' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\current_state__1' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+Latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\do_sub' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10': $auto$proc_dlatch.cc:427:proc_dlatch$227
+Latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\do_swap' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10': $auto$proc_dlatch.cc:427:proc_dlatch$230
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\curr_state__0' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\next_state__0' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1'.
+No latch inferred for signal `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.\state$in_' from process `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1'.
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\RegEn_0x68db79c4ec1d6e5b.\out' using process `\RegEn_0x68db79c4ec1d6e5b.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:571$17'.
+  created $dff cell `$procdff$231' with positive edge clock.
+Creating register for signal `\RegRst_0x9f365fdf6c8998a.\out' using process `\RegRst_0x9f365fdf6c8998a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:352$16'.
+  created $dff cell `$procdff$232' with positive edge clock.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `Subtractor_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:751$34'.
+Removing empty process `Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$33'.
+Found and cleaned up 1 empty switch in `\Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29'.
+Removing empty process `Mux_0xdd6473406d1a99a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:720$29'.
+Removing empty process `Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:0$27'.
+Found and cleaned up 1 empty switch in `\Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23'.
+Removing empty process `Mux_0x683fa1a418b072c9.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:679$23'.
+Removing empty process `ZeroComparator_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:636$20'.
+Removing empty process `LtComparator_0x422b1f52edd46a85.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:606$18'.
+Found and cleaned up 1 empty switch in `\RegEn_0x68db79c4ec1d6e5b.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:571$17'.
+Removing empty process `RegEn_0x68db79c4ec1d6e5b.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:571$17'.
+Found and cleaned up 1 empty switch in `\RegRst_0x9f365fdf6c8998a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:352$16'.
+Removing empty process `RegRst_0x9f365fdf6c8998a.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:352$16'.
+Found and cleaned up 3 empty switches in `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+Removing empty process `GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:277$10'.
+Found and cleaned up 6 empty switches in `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1'.
+Removing empty process `GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.$proc$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:192$1'.
+Cleaned up 13 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module Subtractor_0x422b1f52edd46a85.
+Optimizing module Mux_0xdd6473406d1a99a.
+Replacing $eq cell `$procmux$38_CMP0' in module `Mux_0xdd6473406d1a99a' with inverter.
+Optimizing module Mux_0x683fa1a418b072c9.
+Replacing $eq cell `$procmux$43_CMP0' in module `Mux_0x683fa1a418b072c9' with $logic_not.
+Optimizing module ZeroComparator_0x422b1f52edd46a85.
+Replacing $eq cell `$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:637$21' in module `ZeroComparator_0x422b1f52edd46a85' with $logic_not.
+Optimizing module LtComparator_0x422b1f52edd46a85.
+Optimizing module RegEn_0x68db79c4ec1d6e5b.
+Optimizing module GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.
+Optimizing module RegRst_0x9f365fdf6c8998a.
+Optimizing module GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.
+Replacing $eq cell `$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:195$3' in module `GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with $logic_not.
+Replacing $eq cell `$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:279$11' in module `GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with $logic_not.
+Replacing $mux cell `$procmux$135' (?) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$procmux$135_Y = $not$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:290$13_Y'.
+Replacing $mux cell `$procmux$138' (0) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$procmux$138_Y = $procmux$135_Y'.
+Replacing $mux cell `$procmux$141' (?) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$procmux$141_Y = \is_a_lt_b'.
+Replacing $mux cell `$procmux$144' (0) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$procmux$144_Y = $procmux$141_Y'.
+Replacing $mux cell `$procmux$165' (0) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$procmux$165_Y = $2\do_swap[0:0]'.
+Replacing $mux cell `$procmux$168' (0) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$procmux$168_Y = $2\do_sub[0:0]'.
+Replacing $reduce_or cell `$auto$proc_dlatch.cc:253:make_hold$203' (const_or) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2375:ReduceOr$204 = 1'1'.
+Replacing $and cell `$auto$proc_dlatch.cc:257:make_hold$205' (and_or_buffer) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2401:And$206 = $auto$rtlil.cc:2371:Not$202'.
+Replacing $reduce_or cell `$auto$proc_dlatch.cc:253:make_hold$207' (and_or_buffer) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2375:ReduceOr$208 = $auto$rtlil.cc:2371:Not$202'.
+Replacing $reduce_or cell `$auto$proc_dlatch.cc:253:make_hold$209' (and_or_buffer) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2375:ReduceOr$210 = $auto$rtlil.cc:2371:Not$202'.
+Replacing $reduce_or cell `$auto$proc_dlatch.cc:253:make_hold$213' (and_or_buffer) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2375:ReduceOr$214 = $auto$rtlil.cc:2401:And$212'.
+Replacing $reduce_or cell `$auto$proc_dlatch.cc:253:make_hold$215' (and_or_buffer) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2375:ReduceOr$216 = $auto$rtlil.cc:2401:And$212'.
+Replacing $reduce_or cell `$auto$proc_dlatch.cc:253:make_hold$219' (const_or) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2375:ReduceOr$220 = 1'1'.
+Replacing $and cell `$auto$proc_dlatch.cc:257:make_hold$221' (and_or_buffer) in module `\GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e' with constant driver `$auto$rtlil.cc:2401:And$222 = $eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:279$11_Y'.
+Inverting EN of $dlatch cell `$auto$proc_dlatch.cc:427:proc_dlatch$227' in module `GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e': $auto$rtlil.cc:2371:Not$226 -> $auto$rtlil.cc:2375:ReduceOr$224
+Inverting EN of $dlatch cell `$auto$proc_dlatch.cc:427:proc_dlatch$230' in module `GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e': $auto$rtlil.cc:2371:Not$229 -> $auto$rtlil.cc:2375:ReduceOr$224
+Optimizing module gcd.
+
+2.3. Executing FLATTEN pass (flatten design).
+Flattening GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.state (RegRst_0x9f365fdf6c8998a).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.a_reg (RegEn_0x68db79c4ec1d6e5b).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.a_lt_b (LtComparator_0x422b1f52edd46a85).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.b_zero (ZeroComparator_0x422b1f52edd46a85).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.a_mux (Mux_0x683fa1a418b072c9).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.b_mux (Mux_0xdd6473406d1a99a).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.sub (Subtractor_0x422b1f52edd46a85).
+Flattening GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.b_reg (RegEn_0x68db79c4ec1d6e5b).
+Flattening gcd.ctrl (GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e).
+Flattening gcd.dpath (GcdUnitDpathRTL_0x4d0fc71ead8d3d9e).
+Deleting now unused module Subtractor_0x422b1f52edd46a85.
+Deleting now unused module Mux_0xdd6473406d1a99a.
+Deleting now unused module Mux_0x683fa1a418b072c9.
+Deleting now unused module ZeroComparator_0x422b1f52edd46a85.
+Deleting now unused module LtComparator_0x422b1f52edd46a85.
+Deleting now unused module RegEn_0x68db79c4ec1d6e5b.
+Deleting now unused module GcdUnitDpathRTL_0x4d0fc71ead8d3d9e.
+Deleting now unused module RegRst_0x9f365fdf6c8998a.
+Deleting now unused module GcdUnitCtrlRTL_0x4d0fc71ead8d3d9e.
+
+2.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused `$and' cell `$flatten\ctrl.$auto$proc_dlatch.cc:257:make_hold$211'.
+  removing unused `$not' cell `$flatten\ctrl.$auto$proc_dlatch.cc:244:make_hold$201'.
+  removing unused `$not' cell `$flatten\ctrl.$auto$proc_dlatch.cc:244:make_hold$199'.
+  removing unused `$not' cell `$flatten\ctrl.$auto$proc_dlatch.cc:244:make_hold$197'.
+  removing unused `$and' cell `$flatten\ctrl.$auto$proc_dlatch.cc:257:make_hold$217'.
+  removing unused `$reduce_or' cell `$flatten\ctrl.$auto$proc_dlatch.cc:253:make_hold$223'.
+  removing unused `$not' cell `$flatten\ctrl.$auto$proc_dlatch.cc:427:proc_dlatch$225'.
+  removing unused `$dlatch' cell `$flatten\ctrl.$auto$proc_dlatch.cc:427:proc_dlatch$227'.
+  removing unused `$not' cell `$flatten\ctrl.$auto$proc_dlatch.cc:427:proc_dlatch$228'.
+  removing unused `$dlatch' cell `$flatten\ctrl.$auto$proc_dlatch.cc:427:proc_dlatch$230'.
+  removing unused `$not' cell `$flatten\ctrl.$not$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:290$13'.
+  removing unused non-port wire $flatten\ctrl.\state.$procmux$48_CMP.
+  removing unused non-port wire $flatten\ctrl.\state.$procmux$47_Y.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2371:Not$229.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2371:Not$226.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$224.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$220.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2401:And$218.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$216.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$214.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2401:And$212.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$210.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$208.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2401:And$206.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2375:ReduceOr$204.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2371:Not$202.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2371:Not$200.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2371:Not$198.
+  removing unused non-port wire $flatten\ctrl.$procmux$195_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$196_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$192_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$193_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$191_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$186_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$187_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$183_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$184_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$182_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$177_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$178_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$174_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$175_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$173_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$168_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$169_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$165_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$166_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$162_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$163_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$159_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$160_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$156_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$157_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$153_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$154_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$150_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$151_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$147_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$148_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$144_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$145_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$141_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$142_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$138_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$139_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$135_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$136_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$132_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$133_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$130_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$126_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$127_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$124_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$120_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$121_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$118_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$114_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$115_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$112_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$108_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$109_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$106_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$102_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$103_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$100_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$96_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$97_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$94_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$88_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$89_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$86_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$83_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$79_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$80_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$77_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$71_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$72_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$69_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$63_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$64_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$61_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$55_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$56_CMP.
+  removing unused non-port wire $flatten\ctrl.$procmux$53_CMP.
+  removing unused non-port wire $flatten\ctrl.$not$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:290$13_Y.
+  removing unused non-port wire $flatten\ctrl.$2\do_swap[0:0].
+  removing unused non-port wire $flatten\ctrl.$2\do_sub[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\do_swap[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\do_sub[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\a_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\b_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\b_mux_sel[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\a_mux_sel[1:0].
+  removing unused non-port wire $flatten\ctrl.$1\resp_val[0:0].
+  removing unused non-port wire $flatten\ctrl.$1\req_rdy[0:0].
+  removing unused non-port wire $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:279$11_Y.
+  removing unused non-port wire $flatten\ctrl.$0\do_swap[0:0].
+  removing unused non-port wire $flatten\ctrl.$0\do_sub[0:0].
+  removing unused non-port wire $flatten\ctrl.$0\current_state__1[1:0].
+  removing unused non-port wire $flatten\ctrl.$0\a_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$0\b_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$0\b_mux_sel[0:0].
+  removing unused non-port wire $flatten\ctrl.$0\a_mux_sel[1:0].
+  removing unused non-port wire $flatten\ctrl.$0\resp_val[0:0].
+  removing unused non-port wire $flatten\ctrl.$0\req_rdy[0:0].
+  removing unused non-port wire $flatten\ctrl.$5\next_state__0[1:0].
+  removing unused non-port wire $flatten\ctrl.$0\state$in_[1:0]$2.
+  removing unused non-port wire $flatten\ctrl.$0\next_state__0[1:0].
+  removing unused non-port wire $flatten\ctrl.$0\curr_state__0[1:0].
+  removing unused non-port wire \ctrl.do_swap.
+  removing unused non-port wire \ctrl.do_sub.
+  removing unused non-port wire $flatten\dpath.\b_reg.$procmux$45_CMP.
+  removing unused non-port wire $flatten\dpath.\b_reg.$procmux$44_Y.
+  removing unused non-port wire $flatten\dpath.\sub.$0\out[15:0].
+  removing unused non-port wire $flatten\dpath.\sub.$sub$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:752$35_Y.
+  removing unused non-port wire $flatten\dpath.\b_mux.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_ADDR.
+  removing unused non-port wire $flatten\dpath.\b_mux.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_DATA.
+  removing unused non-port wire $flatten\dpath.\b_mux.$0\out[15:0].
+  removing unused non-port wire $flatten\dpath.\b_mux.$0$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_ADDR[0:0]$30.
+  removing unused non-port wire $flatten\dpath.\b_mux.$0$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_DATA[15:0]$31.
+  removing unused non-port wire $flatten\dpath.\b_mux.$1$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:721$28_DATA[15:0]$32.
+  removing unused non-port wire $flatten\dpath.\b_mux.$0\in_[0][15:0].
+  removing unused non-port wire $flatten\dpath.\b_mux.$0\in_[1][15:0].
+  removing unused non-port wire $flatten\dpath.\b_mux.$procmux$37_CMP.
+  removing unused non-port wire $flatten\dpath.\b_mux.$procmux$36_Y.
+  removing unused non-port wire $flatten\dpath.\a_mux.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_ADDR.
+  removing unused non-port wire $flatten\dpath.\a_mux.$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_DATA.
+  removing unused non-port wire $flatten\dpath.\a_mux.$0\out[15:0].
+  removing unused non-port wire $flatten\dpath.\a_mux.$0$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_ADDR[1:0]$24.
+  removing unused non-port wire $flatten\dpath.\a_mux.$0$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_DATA[15:0]$25.
+  removing unused non-port wire $flatten\dpath.\a_mux.$1$mem2reg_rd$\in_$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:680$22_DATA[15:0]$26.
+  removing unused non-port wire $flatten\dpath.\a_mux.$0\in_[0][15:0].
+  removing unused non-port wire $flatten\dpath.\a_mux.$0\in_[1][15:0].
+  removing unused non-port wire $flatten\dpath.\a_mux.$0\in_[2][15:0].
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40_Y.
+  removing unused non-port wire $flatten\dpath.\b_zero.$0\out[0:0].
+  removing unused non-port wire $flatten\dpath.\b_zero.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:637$21_Y.
+  removing unused non-port wire $flatten\dpath.\a_lt_b.$0\out[0:0].
+  removing unused non-port wire $flatten\dpath.\a_lt_b.$lt$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:607$19_Y.
+  removing unused non-port wire $flatten\dpath.\a_reg.$procmux$45_CMP.
+  removing unused non-port wire $flatten\dpath.\a_reg.$procmux$44_Y.
+Removed 11 unused cells and 150 unused wires.
+
+2.6. Executing CHECK pass (checking for obvious problems).
+Checking module gcd...
+Found and reported 0 problems.
+
+2.7. Executing OPT pass (performing simple optimizations).
+
+2.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+  Cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:279$11' is identical to cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:195$3'.
+    Redirecting output \Y: $flatten\ctrl.$auto$rtlil.cc:2401:And$222 = $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:195$3_Y
+    Removing $logic_not cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:279$11' from module `\gcd'.
+  Cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:288$12' is identical to cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5'.
+    Redirecting output \Y: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:288$12_Y = $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5_Y
+    Removing $eq cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:288$12' from module `\gcd'.
+  Cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:299$15' is identical to cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8'.
+    Redirecting output \Y: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:299$15_Y = $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8_Y
+    Removing $eq cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:299$15' from module `\gcd'.
+Removed a total of 3 cells.
+
+2.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$147 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$150 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$153 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$162 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$186
+    Root of a mux tree: $flatten\ctrl.$procmux$195
+    Root of a mux tree: $flatten\ctrl.\state.$procmux$47 (pure)
+    Root of a mux tree: $flatten\dpath.\a_reg.$procmux$44 (pure)
+    Root of a mux tree: $flatten\dpath.\b_reg.$procmux$44 (pure)
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$102.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$108.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$114.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$120.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$126.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$132.
+    dead port 2/2 on $mux $flatten\ctrl.$procmux$174.
+    dead port 2/2 on $mux $flatten\ctrl.$procmux$183.
+    dead port 2/2 on $mux $flatten\ctrl.$procmux$192.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$52.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$55.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$60.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$63.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$68.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$71.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$76.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$79.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$85.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$88.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$93.
+    dead port 1/2 on $mux $flatten\ctrl.$procmux$96.
+Removed 21 multiplexer ports.
+
+2.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+  Optimizing cells in module \gcd.
+Performed a total of 2 changes.
+
+2.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+  Cell `$flatten\ctrl.$procmux$150' is identical to cell `$flatten\ctrl.$procmux$162'.
+    Redirecting output \Y: \dpath.b_mux.sel = \ctrl.req_rdy
+    Removing $mux cell `$flatten\ctrl.$procmux$150' from module `\gcd'.
+Removed a total of 1 cells.
+
+2.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused non-port wire $flatten\ctrl.$procmux$99_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$93_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$85_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$82_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$76_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$68_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$60_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$52_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$190_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$181_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$172_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$129_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$123_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$117_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$111_Y.
+  removing unused non-port wire $flatten\ctrl.$procmux$105_Y.
+  removing unused non-port wire $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:299$15_Y.
+  removing unused non-port wire $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:288$12_Y.
+  removing unused non-port wire $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:195$3_Y.
+  removing unused non-port wire $flatten\ctrl.$3\req_rdy[0:0].
+  removing unused non-port wire $flatten\ctrl.$3\b_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$3\b_mux_sel[0:0].
+  removing unused non-port wire $flatten\ctrl.$3\a_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$3\a_mux_sel[1:0].
+  removing unused non-port wire $flatten\ctrl.$2\req_rdy[0:0].
+  removing unused non-port wire $flatten\ctrl.$2\b_mux_sel[0:0].
+Removed 0 unused cells and 26 unused wires.
+
+2.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$147 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$153 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$162 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$186
+    Root of a mux tree: $flatten\ctrl.$procmux$195
+    Root of a mux tree: $flatten\ctrl.\state.$procmux$47 (pure)
+    Root of a mux tree: $flatten\dpath.\a_reg.$procmux$44 (pure)
+    Root of a mux tree: $flatten\dpath.\b_reg.$procmux$44 (pure)
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+2.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+Performed a total of 0 changes.
+
+2.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+2.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.7.16. Finished OPT passes. (There is nothing left to do.)
+
+2.8. Executing FSM pass (extract and optimize FSM).
+
+2.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register gcd.ctrl.state.out.
+
+2.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\ctrl.state.out' from module `\gcd'.
+  found $dff cell for state register: $flatten\ctrl.\state.$procdff$232
+  root of input selection tree: $flatten\ctrl.\state.$0\out[1:0]
+  found reset state: 2'00 (guessed from mux tree)
+  found ctrl input: \reset
+  found ctrl input: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8_Y
+  found ctrl input: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5_Y
+  found ctrl input: $flatten\ctrl.$auto$rtlil.cc:2401:And$222
+  found ctrl input: $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:196$4_Y
+  found state code: 2'01
+  found ctrl input: $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$7_Y
+  found state code: 2'10
+  found ctrl input: $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:214$9_Y
+  found state code: 2'00
+  found ctrl output: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8_Y
+  found ctrl output: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5_Y
+  found ctrl output: $flatten\ctrl.$auto$rtlil.cc:2401:And$222
+  ctrl inputs: { $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:196$4_Y $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$7_Y $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:214$9_Y \reset }
+  ctrl outputs: { $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5_Y $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8_Y $flatten\ctrl.$auto$rtlil.cc:2401:And$222 $flatten\ctrl.\state.$0\out[1:0] }
+  transition:       2'00 4'0--0 ->       2'00 5'00100
+  transition:       2'00 4'1--0 ->       2'01 5'00101
+  transition:       2'00 4'---1 ->       2'00 5'00100
+  transition:       2'10 4'--00 ->       2'10 5'01010
+  transition:       2'10 4'--10 ->       2'00 5'01000
+  transition:       2'10 4'---1 ->       2'00 5'01000
+  transition:       2'01 4'-0-0 ->       2'01 5'10001
+  transition:       2'01 4'-1-0 ->       2'10 5'10010
+  transition:       2'01 4'---1 ->       2'00 5'10000
+
+2.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\ctrl.state.out$233' from module `\gcd'.
+
+2.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused `$dff' cell `$flatten\ctrl.\state.$procdff$232'.
+  removing unused `$mux' cell `$flatten\ctrl.$procmux$195'.
+  removing unused `$mux' cell `$flatten\ctrl.$procmux$190'.
+  removing unused `$mux' cell `$flatten\ctrl.$procmux$186'.
+  removing unused `$mux' cell `$flatten\ctrl.$procmux$181'.
+  removing unused `$mux' cell `$flatten\ctrl.$procmux$177'.
+  removing unused `$mux' cell `$flatten\ctrl.$procmux$172'.
+  removing unused `$eq' cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8'.
+  removing unused `$eq' cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5'.
+  removing unused `$logic_not' cell `$flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:195$3'.
+  removing unused `$mux' cell `$flatten\ctrl.\state.$procmux$47'.
+  removing unused non-port wire $flatten\ctrl.$1\next_state__0[1:0].
+  removing unused non-port wire \ctrl.next_state__0.
+  removing unused non-port wire \ctrl.curr_state__0.
+  removing unused non-port wire $flatten\ctrl.$6\next_state__0[1:0].
+  removing unused non-port wire $flatten\ctrl.$4\next_state__0[1:0].
+  removing unused non-port wire $flatten\ctrl.$3\next_state__0[1:0].
+  removing unused non-port wire $flatten\ctrl.$2\next_state__0[1:0].
+  removing unused non-port wire $fsm$oldstate\ctrl.state.out.
+  removing unused non-port wire $fsm_unconnect$234.
+  removing unused non-port wire $fsm_unconnect$235.
+  removing unused non-port wire $fsm_unconnect$236.
+  removing unused non-port wire $fsm_unconnect$237.
+  removing unused non-port wire \ctrl.state.in_.
+  removing unused non-port wire \ctrl.state$out.
+  removing unused non-port wire \ctrl.state$in_.
+  removing unused non-port wire \ctrl.current_state__1.
+Removed 11 unused cells and 16 unused wires.
+
+2.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\ctrl.state.out$233' from module `\gcd'.
+  Removing unused output signal $flatten\ctrl.\state.$0\out[1:0] [0].
+  Removing unused output signal $flatten\ctrl.\state.$0\out[1:0] [1].
+
+2.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\ctrl.state.out$233' from module `\gcd' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  00 -> --1
+  10 -> -1-
+  01 -> 1--
+
+2.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\ctrl.state.out$233' from module `gcd':
+-------------------------------------
+
+  Information on FSM $fsm$\ctrl.state.out$233 (\ctrl.state.out):
+
+  Number of input signals:    4
+  Number of output signals:   3
+  Number of state bits:       3
+
+  Input signals:
+    0: \reset
+    1: $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:214$9_Y
+    2: $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$7_Y
+    3: $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:196$4_Y
+
+  Output signals:
+    0: $flatten\ctrl.$auto$rtlil.cc:2401:And$222
+    1: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8_Y
+    2: $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5_Y
+
+  State encoding:
+    0:      3'--1  <RESET STATE>
+    1:      3'-1-
+    2:      3'1--
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 4'0--0   ->     0 3'001
+      1:     0 4'---1   ->     0 3'001
+      2:     0 4'1--0   ->     2 3'001
+      3:     1 4'--10   ->     0 3'010
+      4:     1 4'---1   ->     0 3'010
+      5:     1 4'--00   ->     1 3'010
+      6:     2 4'---1   ->     0 3'100
+      7:     2 4'-1-0   ->     1 3'100
+      8:     2 4'-0-0   ->     2 3'100
+
+-------------------------------------
+
+2.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\ctrl.state.out$233' from module `\gcd'.
+
+2.9. Executing OPT pass (performing simple optimizations).
+
+2.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+Replacing $eq cell `$auto$fsm_map.cc:77:implement_pattern_cache$263' in module `gcd' with $logic_not.
+Replacing $eq cell `$auto$fsm_map.cc:77:implement_pattern_cache$247' in module `gcd' with $logic_not.
+Replacing $eq cell `$auto$fsm_map.cc:77:implement_pattern_cache$251' (1) in module `\gcd' with constant driver `$auto$fsm_map.cc:74:implement_pattern_cache$250 = \reset'.
+Replacing $eq cell `$auto$fsm_map.cc:77:implement_pattern_cache$254' in module `gcd' with $logic_not.
+
+2.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$147 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$153 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$162 (pure)
+    Root of a mux tree: $flatten\dpath.\a_reg.$procmux$44 (pure)
+    Root of a mux tree: $flatten\dpath.\b_reg.$procmux$44 (pure)
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+2.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+Performed a total of 0 changes.
+
+2.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $flatten\dpath.\b_reg.$procdff$231 ($dff) from module gcd (D = \dpath.b_reg.in_, Q = \dpath.b_reg.out).
+Adding EN signal on $flatten\dpath.\a_reg.$procdff$231 ($dff) from module gcd (D = \dpath.a_reg.in_, Q = \dpath.a_reg.out).
+
+2.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused `$mux' cell `$flatten\dpath.\b_reg.$procmux$44'.
+  removing unused `$mux' cell `$flatten\dpath.\a_reg.$procmux$44'.
+  removing unused non-port wire $flatten\dpath.\b_reg.$0\out[15:0].
+  removing unused non-port wire $flatten\dpath.\a_reg.$0\out[15:0].
+  removing unused non-port wire $flatten\ctrl.\state.$0\out[1:0].
+  removing unused non-port wire $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:213$8_Y.
+  removing unused non-port wire $flatten\ctrl.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:204$5_Y.
+  removing unused non-port wire $flatten\ctrl.$auto$rtlil.cc:2401:And$222.
+  removing unused non-port wire $auto$fsm_map.cc:194:map_fsm$240.
+  removing unused non-port wire $auto$fsm_map.cc:238:map_fsm$241.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$250.
+Removed 2 unused cells and 9 unused wires.
+
+2.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$147 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$153 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$162 (pure)
+    Root of a mux tree: $flatten\dpath.\a_mux.$procmux$40 (pure)
+    Root of a mux tree: $flatten\dpath.\b_mux.$procmux$36 (pure)
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+2.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+Performed a total of 0 changes.
+
+2.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+2.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.9.16. Finished OPT passes. (There is nothing left to do.)
+
+2.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 30 bits (of 32) from mux cell gcd.$flatten\ctrl.$ternary$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:293$14 ($mux).
+Removed top 1 bits (of 2) from port B of cell gcd.$flatten\dpath.\a_mux.$procmux$42_CMP0 ($eq).
+Removed top 30 bits (of 32) from wire gcd.$flatten\ctrl.$ternary$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:293$14_Y.
+
+2.11. Executing PEEPOPT pass (run peephole optimizers).
+
+2.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused non-port wire $flatten\ctrl.$ternary$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:293$14_Y.
+Removed 0 unused cells and 1 unused wires.
+
+2.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module gcd:
+  creating $macc model for $flatten\dpath.\sub.$sub$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:752$35 ($sub).
+  creating $alu model for $macc $flatten\dpath.\sub.$sub$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:752$35.
+  creating $alu model for $flatten\dpath.\a_lt_b.$lt$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:607$19 ($lt): merged with $flatten\dpath.\sub.$sub$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:752$35.
+  creating $alu cell for $flatten\dpath.\sub.$sub$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:752$35, $flatten\dpath.\a_lt_b.$lt$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:607$19: $auto$alumacc.cc:485:replace_alu$274
+  created 1 $alu and 0 $macc cells.
+
+2.14. Executing SHARE pass (SAT-based resource sharing).
+
+2.15. Executing OPT pass (performing simple optimizations).
+
+2.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+Replacing $logic_not cell `$flatten\ctrl.$logic_not$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$6' (double_invert) in module `\gcd' with constant driver `$flatten\ctrl.$logic_not$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$6_Y = $auto$alumacc.cc:502:replace_alu$276 [15]'.
+Optimizing away select inverter for $mux cell `$flatten\ctrl.$ternary$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:293$14' in module `gcd'.
+
+2.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$147 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$153 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$162 (pure)
+    Root of a mux tree: $flatten\dpath.\a_mux.$procmux$40 (pure)
+    Root of a mux tree: $flatten\dpath.\b_mux.$procmux$36 (pure)
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+2.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+Performed a total of 0 changes.
+
+2.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused non-port wire $flatten\ctrl.$logic_not$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$6_Y.
+  removing unused non-port wire $auto$rtlil.cc:2371:Not$278.
+Removed 0 unused cells and 2 unused wires.
+
+2.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$147 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$153 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$162 (pure)
+    Root of a mux tree: $flatten\dpath.\a_mux.$procmux$40 (pure)
+    Root of a mux tree: $flatten\dpath.\b_mux.$procmux$36 (pure)
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+2.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+Performed a total of 0 changes.
+
+2.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+2.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+2.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+2.15.16. Finished OPT passes. (There is nothing left to do.)
+
+2.16. Executing MEMORY pass.
+
+2.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+2.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+2.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+2.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+2.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+3. Executing SHARE pass (SAT-based resource sharing).
+
+4. Executing ONEHOT pass.
+Replacing one-hot $eq(\dpath.a_mux.sel, 2'10) cell gcd/$flatten\dpath.\a_mux.$procmux$41_CMP0 with signal \dpath.a_mux.sel [1].
+Replacing one-hot $eq(\dpath.a_mux.sel, 2'01) cell gcd/$flatten\dpath.\a_mux.$procmux$42_CMP0 with signal \dpath.a_mux.sel [0].
+
+5. Executing MUXPACK pass ($mux cell cascades to $pmux).
+Considering $flatten\dpath.\a_mux.$procmux$40 ($pmux)
+Considering $flatten\ctrl.$ternary$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:293$14 ($mux)
+Considering $flatten\ctrl.$procmux$99 ($mux)
+Considering $flatten\ctrl.$procmux$159 ($mux)
+Considering $flatten\ctrl.$procmux$156 ($mux)
+Considering $flatten\ctrl.$procmux$153 ($mux)
+Considering $flatten\ctrl.$procmux$147 ($mux)
+Considering $flatten\ctrl.$procmux$123 ($mux)
+Considering $flatten\ctrl.$procmux$117 ($mux)
+Considering $flatten\ctrl.$procmux$111 ($mux)
+Converted 0 (p)mux cells into 0 pmux cells.
+
+6. Executing OPT_DEMORGAN pass (push inverters through $reduce_* cells).
+Warning: Selection "opt_demorgan" did not match any module.
+
+7. Executing OPT_FFINV pass (push inverters through FFs).
+Discovering LUTs.
+Pushed 0 inverters.
+
+8. Executing SYNTH pass.
+
+8.1. Executing OPT pass (performing simple optimizations).
+
+8.1.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+Replacing $mux cell `$flatten\ctrl.$procmux$162' (mux_bool) in module `\gcd' with constant driver `\ctrl.req_rdy = \ctrl.state.out [0]'.
+Replacing $mux cell `$flatten\ctrl.$procmux$82' (mux_bool) in module `\gcd' with constant driver `$flatten\ctrl.$3\resp_val[0:0] = \ctrl.state.out [1]'.
+Replacing $mux cell `$flatten\ctrl.$procmux$111' (mux_bool) in module `\gcd' with constant driver `$flatten\ctrl.$2\a_reg_en[0:0] = \ctrl.state.out [2]'.
+Optimized away 1 select inputs of $pmux cell `$flatten\dpath.\a_mux.$procmux$40' in module `gcd'.
+Optimized away 1 select inputs of $pmux cell `$flatten\dpath.\b_mux.$procmux$36' in module `gcd'.
+Replacing $mux cell `$flatten\ctrl.$procmux$153' in module `gcd' with or-gate.
+Replacing $mux cell `$flatten\ctrl.$procmux$99' in module `gcd' with and-gate.
+Replacing $mux cell `$flatten\ctrl.$procmux$147' in module `gcd' with or-gate.
+
+8.1.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+8.1.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.1.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused `$not' cell `$flatten\dpath.\b_mux.$procmux$38_CMP0'.
+  removing unused `$logic_not' cell `$flatten\dpath.\a_mux.$procmux$43_CMP0'.
+  removing unused non-port wire $flatten\dpath.\b_mux.$procmux$38_CMP.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$43_CMP.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$42_CMP.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$41_CMP.
+  removing unused non-port wire $flatten\ctrl.$3\resp_val[0:0].
+  removing unused non-port wire $flatten\ctrl.$2\a_reg_en[0:0].
+Removed 2 unused cells and 6 unused wires.
+
+8.1.5. Finished fast OPT passes.
+
+8.2. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+8.3. Executing OPT pass (performing simple optimizations).
+
+8.3.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+8.3.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+8.3.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \gcd..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+    Root of a mux tree: $flatten\ctrl.$procmux$156 (pure)
+    Root of a mux tree: $flatten\ctrl.$procmux$159 (pure)
+    Root of a mux tree: $flatten\dpath.\a_mux.$procmux$40 (pure)
+    Root of a mux tree: $flatten\dpath.\b_mux.$procmux$36 (pure)
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+
+8.3.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \gcd.
+Performed a total of 0 changes.
+
+8.3.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+8.3.6. Executing OPT_SHARE pass.
+
+8.3.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+
+8.3.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+8.3.10. Finished OPT passes. (There is nothing left to do.)
+
+8.4. Executing TECHMAP pass (map to technology primitives).
+
+8.4.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+8.4.2. Continuing TECHMAP pass.
+Cell type mappings to use:
+    $xnor: _90_simplemap_bool_ops
+    $xor: _90_simplemap_bool_ops
+    $or: _90_simplemap_bool_ops
+    $and: _90_simplemap_bool_ops
+    $not: _90_simplemap_bool_ops
+    $reduce_bool: _90_simplemap_reduce_ops
+    $reduce_xnor: _90_simplemap_reduce_ops
+    $reduce_xor: _90_simplemap_reduce_ops
+    $reduce_or: _90_simplemap_reduce_ops
+    $reduce_and: _90_simplemap_reduce_ops
+    $logic_or: _90_simplemap_logic_ops
+    $logic_and: _90_simplemap_logic_ops
+    $logic_not: _90_simplemap_logic_ops
+    $nex: _90_simplemap_compare_ops
+    $ne: _90_simplemap_compare_ops
+    $eqx: _90_simplemap_compare_ops
+    $eq: _90_simplemap_compare_ops
+    $bmux: _90_simplemap_various
+    $tribuf: _90_simplemap_various
+    $mux: _90_simplemap_various
+    $concat: _90_simplemap_various
+    $slice: _90_simplemap_various
+    $pos: _90_simplemap_various
+    $dlatchsr: _90_simplemap_registers
+    $adlatch: _90_simplemap_registers
+    $dlatch: _90_simplemap_registers
+    $dffsre: _90_simplemap_registers
+    $dffsr: _90_simplemap_registers
+    $sdffce: _90_simplemap_registers
+    $sdffe: _90_simplemap_registers
+    $sdff: _90_simplemap_registers
+    $aldffe: _90_simplemap_registers
+    $aldff: _90_simplemap_registers
+    $adffe: _90_simplemap_registers
+    $adff: _90_simplemap_registers
+    $dffe: _90_simplemap_registers
+    $dff: _90_simplemap_registers
+    $ff: _90_simplemap_registers
+    $sr: _90_simplemap_registers
+    $sshr: _90_shift_ops_shr_shl_sshl_sshr
+    $sshl: _90_shift_ops_shr_shl_sshl_sshr
+    $shl: _90_shift_ops_shr_shl_sshl_sshr
+    $shr: _90_shift_ops_shr_shl_sshl_sshr
+    $shiftx: _90_shift_shiftx
+    $shift: _90_shift_shiftx
+    $fa: _90_fa
+    $lcu: _90_lcu
+    $alu: _90_alu
+    $macc: _90_macc
+    $mul: _90_alumacc
+    $neg: _90_alumacc
+    $sub: _90_alumacc
+    $add: _90_alumacc
+    $gt: _90_alumacc
+    $ge: _90_alumacc
+    $le: _90_alumacc
+    $lt: _90_alumacc
+    $__div_mod_u: \$__div_mod_u
+    $__div_mod_trunc: \$__div_mod_trunc
+    $div: _90_div
+    $mod: _90_mod
+    $__div_mod_floor: \$__div_mod_floor
+    $divfloor: _90_divfloor
+    $modfloor: _90_modfloor
+    $pow: _90_pow
+    $pmux: _90_pmux
+    $demux: _90_demux
+    $sop: _90_lut
+    $lut: _90_lut
+
+Using extmapper simplemap for cells of type $not.
+Mapping gcd.$auto$alumacc.cc:89:get_cf$277 ($not) with simplemap.
+Using extmapper simplemap for cells of type $reduce_or.
+Mapping gcd.$auto$fsm_map.cc:144:implement_pattern_cache$270 ($reduce_or) with simplemap.
+Using extmapper simplemap for cells of type $and.
+Mapping gcd.$auto$fsm_map.cc:121:implement_pattern_cache$269 ($and) with simplemap.
+Using extmapper simplemap for cells of type $eq.
+Mapping gcd.$auto$fsm_map.cc:77:implement_pattern_cache$243 ($eq) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:121:implement_pattern_cache$265 ($and) with simplemap.
+Parameter \A_SIGNED = 0
+Parameter \B_SIGNED = 0
+Parameter \A_WIDTH = 16
+Parameter \B_WIDTH = 16
+Parameter \Y_WIDTH = 16
+
+8.4.3. Executing AST frontend in derive mode using pre-parsed AST for module `\_90_alu'.
+Parameter \A_SIGNED = 0
+Parameter \B_SIGNED = 0
+Parameter \A_WIDTH = 16
+Parameter \B_WIDTH = 16
+Parameter \Y_WIDTH = 16
+Generating RTLIL representation for module `$paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu'.
+
+8.4.4. Continuing TECHMAP pass.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu for cells of type $alu.
+Mapping gcd.$auto$alumacc.cc:485:replace_alu$274 ($alu) using $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu.
+Mapping gcd.$auto$fsm_map.cc:121:implement_pattern_cache$245 ($and) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:77:implement_pattern_cache$267 ($eq) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:121:implement_pattern_cache$249 ($and) with simplemap.
+Using extmapper simplemap for cells of type $logic_not.
+Mapping gcd.$auto$fsm_map.cc:77:implement_pattern_cache$247 ($logic_not) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:144:implement_pattern_cache$252 ($reduce_or) with simplemap.
+Using extmapper simplemap for cells of type $dff.
+Mapping gcd.$auto$fsm_map.cc:172:map_fsm$239 ($dff) with simplemap.
+Using extmapper simplemap for cells of type $dffe.
+Mapping gcd.$auto$ff.cc:266:slice$271 ($dffe) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:77:implement_pattern_cache$263 ($logic_not) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:144:implement_pattern_cache$261 ($reduce_or) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:121:implement_pattern_cache$260 ($and) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:77:implement_pattern_cache$258 ($eq) with simplemap.
+Using extmapper simplemap for cells of type $mux.
+Mapping gcd.$flatten\ctrl.$procmux$159 ($mux) with simplemap.
+Mapping gcd.$flatten\ctrl.$procmux$156 ($mux) with simplemap.
+Using extmapper simplemap for cells of type $or.
+Mapping gcd.$flatten\ctrl.$procmux$153 ($or) with simplemap.
+Mapping gcd.$flatten\ctrl.$procmux$147 ($or) with simplemap.
+Mapping gcd.$flatten\ctrl.$procmux$123 ($mux) with simplemap.
+Mapping gcd.$flatten\ctrl.$procmux$117 ($mux) with simplemap.
+Mapping gcd.$flatten\ctrl.$procmux$99 ($and) with simplemap.
+Mapping gcd.$flatten\ctrl.$ternary$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:293$14 ($mux) with simplemap.
+Using extmapper simplemap for cells of type $logic_and.
+Mapping gcd.$flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:214$9 ($logic_and) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:121:implement_pattern_cache$256 ($and) with simplemap.
+Mapping gcd.$flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$7 ($logic_and) with simplemap.
+Mapping gcd.$flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:196$4 ($logic_and) with simplemap.
+Mapping gcd.$auto$fsm_map.cc:77:implement_pattern_cache$254 ($logic_not) with simplemap.
+Mapping gcd.$auto$ff.cc:266:slice$272 ($dffe) with simplemap.
+Parameter \WIDTH = 16
+Parameter \S_WIDTH = 2
+
+8.4.5. Executing AST frontend in derive mode using pre-parsed AST for module `\_90_pmux'.
+Parameter \WIDTH = 16
+Parameter \S_WIDTH = 2
+Generating RTLIL representation for module `$paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux'.
+
+8.4.6. Continuing TECHMAP pass.
+Using template $paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux for cells of type $pmux.
+Mapping gcd.$flatten\dpath.\a_mux.$procmux$40 ($pmux) using $paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux.
+Mapping gcd.$flatten\dpath.\b_mux.$procmux$36 ($mux) with simplemap.
+Mapping gcd.$flatten\dpath.\b_zero.$eq$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:637$21 ($logic_not) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$483 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$482 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:597$464 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$ternary$/usr/bin/../share/yosys/techmap.v:597$465 ($mux) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$and$/usr/bin/../share/yosys/techmap.v:585$466 ($and) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$469 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$470 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$471 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$472 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$473 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371 ($not) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$474 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372 ($mux) with simplemap.
+Using extmapper simplemap for cells of type $pos.
+Mapping gcd.$auto$alumacc.cc:485:replace_alu$274.A_conv ($pos) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$475 ($reduce_or) with simplemap.
+Mapping gcd.$auto$alumacc.cc:485:replace_alu$274.B_conv ($pos) with simplemap.
+Parameter \WIDTH = 16
+
+8.4.7. Executing AST frontend in derive mode using pre-parsed AST for module `\_90_lcu'.
+Parameter \WIDTH = 16
+Generating RTLIL representation for module `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000'.
+
+8.4.8. Executing PROC pass (convert processes to netlists).
+
+8.4.8.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+8.4.8.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+8.4.8.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 34 assignments to connections.
+
+8.4.8.4. Executing PROC_INIT pass (extract init attributes).
+
+8.4.8.5. Executing PROC_ARST pass (detect async resets in processes).
+
+8.4.8.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+8.4.8.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.$proc$/usr/bin/../share/yosys/techmap.v:226$604'.
+
+8.4.8.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.\j' from process `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.$proc$/usr/bin/../share/yosys/techmap.v:226$604'.
+No latch inferred for signal `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.\p' from process `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.$proc$/usr/bin/../share/yosys/techmap.v:226$604'.
+No latch inferred for signal `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.\g' from process `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.$proc$/usr/bin/../share/yosys/techmap.v:226$604'.
+No latch inferred for signal `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.\i' from process `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.$proc$/usr/bin/../share/yosys/techmap.v:226$604'.
+
+8.4.8.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+8.4.8.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+8.4.8.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.$proc$/usr/bin/../share/yosys/techmap.v:226$604'.
+Cleaned up 0 empty switches.
+
+8.4.8.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.
+
+8.4.9. Executing OPT pass (performing simple optimizations).
+
+8.4.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.
+
+8.4.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000'.
+Removed a total of 0 cells.
+
+8.4.9.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.4.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000..
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:241$633'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:241$651'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$654'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$663'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$660'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$669'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$672'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$657'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$666'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:241$609'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:241$645'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$678'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$675'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$681'.
+  removing unused `$and' cell `$and$/usr/bin/../share/yosys/techmap.v:249$684'.
+  removing unused non-port wire $0\j[31:0].
+  removing unused non-port wire $0\p[15:0].
+  removing unused non-port wire $0\g[15:0].
+  removing unused non-port wire $0\i[31:0].
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:231$606_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:240$608_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:241$609_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:240$632_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:241$633_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:240$644_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:241$645_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:240$650_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:241$651_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$653_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$654_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$656_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$657_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$659_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$660_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$662_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$663_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$665_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$666_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$668_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$669_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$671_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$672_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$674_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$675_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$677_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$678_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$680_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$681_Y.
+  removing unused non-port wire $or$/usr/bin/../share/yosys/techmap.v:248$683_Y.
+  removing unused non-port wire $and$/usr/bin/../share/yosys/techmap.v:249$684_Y.
+Removed 15 unused cells and 35 unused wires.
+
+8.4.9.5. Finished fast OPT passes.
+
+8.4.10. Continuing TECHMAP pass.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+Mapping gcd.$auto$alumacc.cc:485:replace_alu$274.lcu ($lcu) using $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$476 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.$and$/usr/bin/../share/yosys/techmap.v:286$373 ($and) with simplemap.
+Using extmapper simplemap for cells of type $xor.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:288$374 ($xor) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$477 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$478 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:289$375 ($xor) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$479 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$480 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$481 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$468 ($reduce_or) with simplemap.
+Mapping gcd.$techmap$flatten\dpath.\a_mux.$procmux$40.$and$/usr/bin/../share/yosys/techmap.v:585$467 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:231$605 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$607 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$610 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$613 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$616 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$619 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$622 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$625 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$628 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$631 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$634 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$637 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$640 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$643 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$646 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$649 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$612 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$615 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$618 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$621 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$624 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$627 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$630 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$636 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$639 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$642 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$648 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$652 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$655 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$658 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$661 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$664 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$667 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$670 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$673 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$676 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$679 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$682 ($and) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:231$606 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$608 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$611 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$614 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$617 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$620 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$623 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$626 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$629 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$632 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$635 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$638 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$641 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$644 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$647 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$650 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$653 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$656 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$659 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$662 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$665 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$668 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$671 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$674 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$677 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$680 ($or) with simplemap.
+Mapping gcd.$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:248$683 ($or) with simplemap.
+No more expansions possible.
+
+8.5. Executing OPT pass (performing simple optimizations).
+
+8.5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$594' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [8] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [8]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$595' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [9] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [9]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$596' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [10] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [10]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$597' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [11] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [11]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$598' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [12] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [12]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$599' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [13] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [13]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$600' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [14] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [14]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$601' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [15] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [15]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$590' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [4] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [4]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$591' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [5] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [5]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$592' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [6] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [6]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$593' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [7] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [7]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$588' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [2] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [2]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$589' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [3] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [3]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$587' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [1] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [1]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$586' (??1) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y [0] = $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y [0]'.
+Replacing $_AND_ cell `$auto$simplemap.cc:86:simplemap_bitop$764' (and_or_buffer) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:231$605_Y = $techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:288$374_Y [0]'.
+Replacing $_MUX_ cell `$auto$simplemap.cc:278:simplemap_mux$439' (01?) in module `\gcd' with constant driver `$auto$wreduce.cc:455:run$273 [0] = $auto$alumacc.cc:502:replace_alu$276 [15]'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$363' (xor_buffer) in module `\gcd' with constant driver `$auto$simplemap.cc:251:simplemap_eqne$360 [1] = $auto$rtlil.cc:2551:NotGate$830'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$362' (xor_buffer) in module `\gcd' with constant driver `$auto$simplemap.cc:251:simplemap_eqne$360 [0] = \reset'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$423' (xor_buffer) in module `\gcd' with constant driver `$auto$simplemap.cc:251:simplemap_eqne$420 [1] = $auto$rtlil.cc:2551:NotGate$832'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$422' (xor_buffer) in module `\gcd' with constant driver `$auto$simplemap.cc:251:simplemap_eqne$420 [0] = \reset'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$723' (xor_buffer) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:289$375_Y [0] = $auto$rtlil.cc:2551:NotGate$834'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$379' (xor_buffer) in module `\gcd' with constant driver `$auto$simplemap.cc:251:simplemap_eqne$377 [0] = \reset'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$380' (xor_buffer) in module `\gcd' with constant driver `$auto$simplemap.cc:251:simplemap_eqne$377 [1] = $auto$rtlil.cc:2551:NotGate$836'.
+Replacing $_XOR_ cell `$auto$simplemap.cc:86:simplemap_bitop$739' (xor_buffer) in module `\gcd' with constant driver `$techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:289$375_Y [16] = $auto$alumacc.cc:502:replace_alu$276 [15]'.
+
+8.5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+  Cell `$auto$simplemap.cc:278:simplemap_mux$440' is identical to cell `$auto$simplemap.cc:38:simplemap_not$356'.
+    Redirecting output \Y: $auto$wreduce.cc:455:run$273 [1] = \ctrl.is_a_lt_b
+    Removing $_NOT_ cell `$auto$simplemap.cc:278:simplemap_mux$440' from module `\gcd'.
+Removed a total of 1 cells.
+
+8.5.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.5.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused non-port wire $auto$wreduce.cc:455:run$273.
+  removing unused non-port wire $auto$alumacc.cc:502:replace_alu$276.
+  removing unused non-port wire $auto$alumacc.cc:501:replace_alu$275.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$357.
+  removing unused non-port wire $auto$simplemap.cc:251:simplemap_eqne$360.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$366.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:289$375_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.$xor$/usr/bin/../share/yosys/techmap.v:288$374_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.$and$/usr/bin/../share/yosys/techmap.v:286$373_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.$ternary$/usr/bin/../share/yosys/techmap.v:279$372_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.$not$/usr/bin/../share/yosys/techmap.v:279$371_Y.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.B_buf.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.A_buf.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.AA.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.BI.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.CI.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.Y.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.B.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.A.
+  removing unused non-port wire $auto$simplemap.cc:251:simplemap_eqne$377.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$383.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$393.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$417.
+  removing unused non-port wire $auto$simplemap.cc:251:simplemap_eqne$420.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$426.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$483_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$482_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$481_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$480_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$479_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$478_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$477_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$476_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$475_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$474_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$473_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$472_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$471_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$470_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$469_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:593$468_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$and$/usr/bin/../share/yosys/techmap.v:585$467_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$and$/usr/bin/../share/yosys/techmap.v:585$466_Y.
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$ternary$/usr/bin/../share/yosys/techmap.v:597$465_Y.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[15].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[14].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[13].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[12].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[11].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[10].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[9].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[8].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[7].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[6].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[5].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[4].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[3].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[2].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[1].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_OR[0].B_AND_BITS.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.Y.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.S.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.A.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$520.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$522.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$524.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$558.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$560.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$562.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$564.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$566.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$584.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$602.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu._TECHMAP_DONE_.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.CI.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.CO.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.P.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:231$605_Y.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.g.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.i.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.j.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.p.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$685.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$719.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$721.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$740.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$742.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$744.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$746.
+  removing unused non-port wire $auto$rtlil.cc:2551:NotGate$834.
+Removed 0 unused cells and 91 unused wires.
+
+8.5.5. Finished fast OPT passes.
+
+8.6. Executing ABC pass (technology mapping using ABC).
+
+8.6.1. Extracting gate netlist of module `\gcd' to `<abc-temp-dir>/input.blif'..
+Extracted 263 gates and 334 wires to a netlist network with 70 inputs and 54 outputs.
+
+8.6.1.1. Executing ABC.
+Running ABC command: "berkeley-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+8.6.1.2. Re-integrating ABC results.
+ABC RESULTS:             ORNOT cells:       21
+ABC RESULTS:               NOR cells:        8
+ABC RESULTS:              XNOR cells:        6
+ABC RESULTS:            ANDNOT cells:       91
+ABC RESULTS:               XOR cells:       25
+ABC RESULTS:               AND cells:        6
+ABC RESULTS:               MUX cells:       32
+ABC RESULTS:                OR cells:       42
+ABC RESULTS:              NAND cells:        2
+ABC RESULTS:               NOT cells:       23
+ABC RESULTS:        internal signals:      210
+ABC RESULTS:           input signals:       70
+ABC RESULTS:          output signals:       54
+Removing temp directory.
+
+8.7. Executing OPT pass (performing simple optimizations).
+
+8.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module gcd.
+
+8.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\gcd'.
+Removed a total of 0 cells.
+
+8.7.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused non-port wire $techmap$flatten\dpath.\a_mux.$procmux$40.$reduce_or$/usr/bin/../share/yosys/techmap.v:597$464_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$647_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$641_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$638_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$635_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$629_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$626_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$623_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$620_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$617_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$614_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$or$/usr/bin/../share/yosys/techmap.v:240$611_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$682_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$679_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$676_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$673_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$670_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$667_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$664_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$661_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$658_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$655_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:248$652_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$648_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$642_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$639_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$636_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$630_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$627_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$624_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$621_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$618_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$615_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:241$612_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$649_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$646_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$643_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$640_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$637_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$634_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$631_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$628_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$625_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$622_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$619_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$616_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$613_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$610_Y.
+  removing unused non-port wire $techmap$auto$alumacc.cc:485:replace_alu$274.lcu.$and$/usr/bin/../share/yosys/techmap.v:240$607_Y.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.Y_B.
+  removing unused non-port wire $flatten\dpath.\a_mux.$procmux$40.B_AND_S.
+  removing unused non-port wire $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:214$9_Y.
+  removing unused non-port wire $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:205$7_Y.
+  removing unused non-port wire $flatten\ctrl.$logic_and$/home/wp/Desktop/ysyx-workbench/yosys-sta/example/gcd.v:196$4_Y.
+  removing unused non-port wire $flatten\ctrl.$2\resp_val[0:0].
+  removing unused non-port wire $flatten\ctrl.$2\b_reg_en[0:0].
+  removing unused non-port wire $flatten\ctrl.$2\a_mux_sel[1:0].
+  removing unused non-port wire $auto$simplemap.cc:257:simplemap_eqne$424.
+  removing unused non-port wire $auto$simplemap.cc:257:simplemap_eqne$381.
+  removing unused non-port wire $auto$simplemap.cc:257:simplemap_eqne$364.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$517.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$514.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$509.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$500.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$445.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$414.
+  removing unused non-port wire $auto$simplemap.cc:169:logic_reduce$388.
+  removing unused non-port wire $auto$simplemap.cc:128:simplemap_reduce$391.
+  removing unused non-port wire $auto$rtlil.cc:2551:NotGate$836.
+  removing unused non-port wire $auto$rtlil.cc:2551:NotGate$832.
+  removing unused non-port wire $auto$rtlil.cc:2551:NotGate$830.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$266.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$262.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$257.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$253.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$246.
+  removing unused non-port wire $auto$fsm_map.cc:74:implement_pattern_cache$242.
+  removing unused non-port wire $auto$fsm_map.cc:170:map_fsm$238.
+  removing unused non-port wire $auto$fsm_map.cc:118:implement_pattern_cache$268.
+  removing unused non-port wire $auto$fsm_map.cc:118:implement_pattern_cache$264.
+  removing unused non-port wire $auto$fsm_map.cc:118:implement_pattern_cache$259.
+  removing unused non-port wire $auto$fsm_map.cc:118:implement_pattern_cache$255.
+  removing unused non-port wire $auto$fsm_map.cc:118:implement_pattern_cache$248.
+  removing unused non-port wire $auto$fsm_map.cc:118:implement_pattern_cache$244.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.lcu.G.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.X.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.CO.
+  removing unused non-port wire $auto$alumacc.cc:485:replace_alu$274.BB.
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][15].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][14].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][13].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][12].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][11].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][10].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][9].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][8].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][7].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][6].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][5].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][4].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][3].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][2].
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][1].
+  removing unused non-port wire $abc$837$ctrl.b_reg_en.
+  removing unused non-port wire $abc$837$ctrl.a_reg_en.
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[15].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[14].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[13].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[12].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[11].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[10].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[9].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[8].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[7].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[6].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[5].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[4].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[3].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[2].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[1].
+  removing unused non-port wire $abc$837$dpath.a_reg.in_[0].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[15].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[14].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[13].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[12].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[11].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[10].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[9].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[8].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[7].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[6].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[5].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[4].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[3].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[2].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[1].
+  removing unused non-port wire $abc$837$dpath.b_reg.in_[0].
+  removing unused non-port wire $abc$837$ctrl.resp_val.
+  removing unused non-port wire $abc$837$dpath.a_mux.in_[1][0].
+  removing unused non-port wire $abc$837$req_msg[31].
+  removing unused non-port wire $abc$837$req_msg[30].
+  removing unused non-port wire $abc$837$req_msg[29].
+  removing unused non-port wire $abc$837$req_msg[28].
+  removing unused non-port wire $abc$837$req_msg[27].
+  removing unused non-port wire $abc$837$req_msg[26].
+  removing unused non-port wire $abc$837$req_msg[25].
+  removing unused non-port wire $abc$837$req_msg[24].
+  removing unused non-port wire $abc$837$req_msg[23].
+  removing unused non-port wire $abc$837$req_msg[22].
+  removing unused non-port wire $abc$837$req_msg[21].
+  removing unused non-port wire $abc$837$req_msg[20].
+  removing unused non-port wire $abc$837$req_msg[19].
+  removing unused non-port wire $abc$837$req_msg[18].
+  removing unused non-port wire $abc$837$req_msg[17].
+  removing unused non-port wire $abc$837$req_msg[16].
+  removing unused non-port wire $abc$837$req_msg[15].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[15].
+  removing unused non-port wire $abc$837$req_msg[14].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[14].
+  removing unused non-port wire $abc$837$req_msg[13].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[13].
+  removing unused non-port wire $abc$837$req_msg[12].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[12].
+  removing unused non-port wire $abc$837$req_msg[11].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[11].
+  removing unused non-port wire $abc$837$req_msg[10].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[10].
+  removing unused non-port wire $abc$837$req_msg[9].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[9].
+  removing unused non-port wire $abc$837$req_msg[8].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[8].
+  removing unused non-port wire $abc$837$req_msg[7].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[7].
+  removing unused non-port wire $abc$837$req_msg[6].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[6].
+  removing unused non-port wire $abc$837$req_msg[5].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[5].
+  removing unused non-port wire $abc$837$req_msg[4].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[4].
+  removing unused non-port wire $abc$837$req_msg[3].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[3].
+  removing unused non-port wire $abc$837$req_msg[2].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[2].
+  removing unused non-port wire $abc$837$req_msg[1].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[1].
+  removing unused non-port wire $abc$837$req_msg[0].
+  removing unused non-port wire $abc$837$dpath.a_reg.out[0].
+  removing unused non-port wire $abc$837$ctrl.state.out[2].
+  removing unused non-port wire $abc$837$ctrl.state.out[1].
+  removing unused non-port wire $abc$837$ctrl.state.out[0].
+  removing unused non-port wire $abc$837$req_val.
+  removing unused non-port wire $abc$837$resp_rdy.
+  removing unused non-port wire $abc$837$dpath.b_reg.out[15].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[14].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[13].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[12].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[11].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[10].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[9].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[8].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[7].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[6].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[5].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[4].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[3].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[2].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[1].
+  removing unused non-port wire $abc$837$dpath.b_reg.out[0].
+  removing unused non-port wire $abc$837$reset.
+Removed 0 unused cells and 209 unused wires.
+
+8.7.5. Finished fast OPT passes.
+
+8.8. Executing HIERARCHY pass (managing design hierarchy).
+
+8.8.1. Analyzing design hierarchy..
+Top module:  \gcd
+
+8.8.2. Analyzing design hierarchy..
+Top module:  \gcd
+Removed 0 unused modules.
+
+8.9. Printing statistics.
+
+=== gcd ===
+
+   Number of wires:                345
+   Number of wire bits:           1104
+   Number of public wires:         140
+   Number of public wire bits:     899
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                291
+     $_ANDNOT_                      91
+     $_AND_                          6
+     $_DFFE_PP_                     32
+     $_DFF_P_                        3
+     $_MUX_                         32
+     $_NAND_                         2
+     $_NOR_                          8
+     $_NOT_                         23
+     $_ORNOT_                       21
+     $_OR_                          42
+     $_XNOR_                         6
+     $_XOR_                         25
+
+8.10. Executing CHECK pass (checking for obvious problems).
+Checking module gcd...
+Found and reported 0 problems.
+
+9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \gcd..
+  removing unused non-port wire \dpath.sub_out.
+  removing unused non-port wire \dpath.sub.reset.
+  removing unused non-port wire \dpath.sub.out.
+  removing unused non-port wire \dpath.sub.in1.
+  removing unused non-port wire \dpath.sub.in0.
+  removing unused non-port wire \dpath.sub.clk.
+  removing unused non-port wire \dpath.sub$reset.
+  removing unused non-port wire \dpath.sub$out.
+  removing unused non-port wire \dpath.sub$in1.
+  removing unused non-port wire \dpath.sub$in0.
+  removing unused non-port wire \dpath.sub$clk.
+  removing unused non-port wire \dpath.resp_msg.
+  removing unused non-port wire \dpath.reset.
+  removing unused non-port wire \dpath.req_msg_b.
+  removing unused non-port wire \dpath.req_msg_a.
+  removing unused non-port wire \dpath.is_b_zero.
+  removing unused non-port wire \dpath.is_a_lt_b.
+  removing unused non-port wire \dpath.clk.
+  removing unused non-port wire \dpath.b_zero.reset.
+  removing unused non-port wire \dpath.b_zero.out.
+  removing unused non-port wire \dpath.b_zero.in_.
+  removing unused non-port wire \dpath.b_zero.clk.
+  removing unused non-port wire \dpath.b_zero$reset.
+  removing unused non-port wire \dpath.b_zero$out.
+  removing unused non-port wire \dpath.b_zero$in_.
+  removing unused non-port wire \dpath.b_zero$clk.
+  removing unused non-port wire \dpath.b_reg_out.
+  removing unused non-port wire \dpath.b_reg_en.
+  removing unused non-port wire \dpath.b_reg.reset.
+  removing unused non-port wire \dpath.b_reg.out.
+  removing unused non-port wire \dpath.b_reg.in_.
+  removing unused non-port wire \dpath.b_reg.en.
+  removing unused non-port wire \dpath.b_reg.clk.
+  removing unused non-port wire \dpath.b_reg$reset.
+  removing unused non-port wire \dpath.b_reg$out.
+  removing unused non-port wire \dpath.b_reg$in_.
+  removing unused non-port wire \dpath.b_reg$en.
+  removing unused non-port wire \dpath.b_reg$clk.
+  removing unused non-port wire \dpath.b_mux_sel.
+  removing unused non-port wire \dpath.b_mux.sel.
+  removing unused non-port wire \dpath.b_mux.reset.
+  removing unused non-port wire \dpath.b_mux.out.
+  removing unused non-port wire \dpath.b_mux.in_[1].
+  removing unused non-port wire \dpath.b_mux.in_[0].
+  removing unused non-port wire \dpath.b_mux.in_$001.
+  removing unused non-port wire \dpath.b_mux.in_$000.
+  removing unused non-port wire \dpath.b_mux.clk.
+  removing unused non-port wire \dpath.b_mux$sel.
+  removing unused non-port wire \dpath.b_mux$reset.
+  removing unused non-port wire \dpath.b_mux$in_$001.
+  removing unused non-port wire \dpath.b_mux$in_$000.
+  removing unused non-port wire \dpath.b_mux$clk.
+  removing unused non-port wire \dpath.a_reg_en.
+  removing unused non-port wire \dpath.a_reg.reset.
+  removing unused non-port wire \dpath.a_reg.out.
+  removing unused non-port wire \dpath.a_reg.in_.
+  removing unused non-port wire \dpath.a_reg.en.
+  removing unused non-port wire \dpath.a_reg.clk.
+  removing unused non-port wire \dpath.a_reg$reset.
+  removing unused non-port wire \dpath.a_reg$out.
+  removing unused non-port wire \dpath.a_reg$in_.
+  removing unused non-port wire \dpath.a_reg$en.
+  removing unused non-port wire \dpath.a_reg$clk.
+  removing unused non-port wire \dpath.a_mux_sel.
+  removing unused non-port wire \dpath.a_mux.sel.
+  removing unused non-port wire \dpath.a_mux.reset.
+  removing unused non-port wire \dpath.a_mux.out.
+  removing unused non-port wire \dpath.a_mux.in_[2].
+  removing unused non-port wire \dpath.a_mux.in_[1].
+  removing unused non-port wire \dpath.a_mux.in_[0].
+  removing unused non-port wire \dpath.a_mux.in_$002.
+  removing unused non-port wire \dpath.a_mux.in_$001.
+  removing unused non-port wire \dpath.a_mux.in_$000.
+  removing unused non-port wire \dpath.a_mux.clk.
+  removing unused non-port wire \dpath.a_mux$sel.
+  removing unused non-port wire \dpath.a_mux$reset.
+  removing unused non-port wire \dpath.a_mux$in_$002.
+  removing unused non-port wire \dpath.a_mux$in_$001.
+  removing unused non-port wire \dpath.a_mux$in_$000.
+  removing unused non-port wire \dpath.a_mux$clk.
+  removing unused non-port wire \dpath.a_lt_b.reset.
+  removing unused non-port wire \dpath.a_lt_b.out.
+  removing unused non-port wire \dpath.a_lt_b.in1.
+  removing unused non-port wire \dpath.a_lt_b.in0.
+  removing unused non-port wire \dpath.a_lt_b.clk.
+  removing unused non-port wire \dpath.a_lt_b$reset.
+  removing unused non-port wire \dpath.a_lt_b$out.
+  removing unused non-port wire \dpath.a_lt_b$clk.
+  removing unused non-port wire \dpath$resp_msg.
+  removing unused non-port wire \dpath$reset.
+  removing unused non-port wire \dpath$req_msg_b.
+  removing unused non-port wire \dpath$req_msg_a.
+  removing unused non-port wire \dpath$is_b_zero.
+  removing unused non-port wire \dpath$is_a_lt_b.
+  removing unused non-port wire \dpath$clk.
+  removing unused non-port wire \dpath$b_reg_en.
+  removing unused non-port wire \dpath$b_mux_sel.
+  removing unused non-port wire \dpath$a_reg_en.
+  removing unused non-port wire \dpath$a_mux_sel.
+  removing unused non-port wire \ctrl.state.reset.
+  removing unused non-port wire \ctrl.state.clk.
+  removing unused non-port wire \ctrl.state$reset.
+  removing unused non-port wire \ctrl.state$clk.
+  removing unused non-port wire \ctrl.resp_val.
+  removing unused non-port wire \ctrl.resp_rdy.
+  removing unused non-port wire \ctrl.reset.
+  removing unused non-port wire \ctrl.req_val.
+  removing unused non-port wire \ctrl.req_rdy.
+  removing unused non-port wire \ctrl.is_b_zero.
+  removing unused non-port wire \ctrl.is_a_lt_b.
+  removing unused non-port wire \ctrl.clk.
+  removing unused non-port wire \ctrl.b_mux_sel.
+  removing unused non-port wire \ctrl.a_mux_sel.
+  removing unused non-port wire \ctrl$resp_val.
+  removing unused non-port wire \ctrl$resp_rdy.
+  removing unused non-port wire \ctrl$reset.
+  removing unused non-port wire \ctrl$req_val.
+  removing unused non-port wire \ctrl$req_rdy.
+  removing unused non-port wire \ctrl$is_b_zero.
+  removing unused non-port wire \ctrl$is_a_lt_b.
+  removing unused non-port wire \ctrl$clk.
+  removing unused non-port wire \ctrl$b_reg_en.
+  removing unused non-port wire \ctrl$b_mux_sel.
+  removing unused non-port wire \ctrl$a_reg_en.
+  removing unused non-port wire \ctrl$a_mux_sel.
+Removed 0 unused cells and 125 unused wires.
+
+10. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+11. Executing AUTONAME pass.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$996 in gcd to dpath.a_mux$out_4__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$990 in gcd to dpath.a_mux$out_3__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$983 in gcd to dpath.a_mux$out_2__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$977 in gcd to dpath.a_mux$out_1__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$972 in gcd to dpath.a_mux$out_0__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$963 in gcd to dpath.b_mux$out_15__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$962 in gcd to dpath.b_mux$out_14__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$961 in gcd to dpath.b_mux$out_13__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$960 in gcd to dpath.b_mux$out_12__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$959 in gcd to dpath.b_mux$out_11__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$958 in gcd to dpath.b_mux$out_10__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$957 in gcd to dpath.b_mux$out_9__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$956 in gcd to dpath.b_mux$out_8__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$955 in gcd to dpath.b_mux$out_7__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$954 in gcd to dpath.b_mux$out_6__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$953 in gcd to dpath.b_mux$out_5__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$952 in gcd to dpath.b_mux$out_4__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$951 in gcd to dpath.b_mux$out_3__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$950 in gcd to dpath.b_mux$out_2__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$949 in gcd to dpath.b_mux$out_1__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$948 in gcd to dpath.b_mux$out_0__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$935 in gcd to resp_val_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$838 in gcd to resp_msg_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1093 in gcd to resp_msg_$_NOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1092 in gcd to resp_msg_$_NOT__Y_1.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1091 in gcd to resp_msg_$_NOT__Y_2.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1090 in gcd to resp_msg_$_NOT__Y_3.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1089 in gcd to resp_msg_$_NOT__Y_4.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1088 in gcd to resp_msg_$_NOT__Y_5.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1087 in gcd to resp_msg_$_NOT__Y_6.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1086 in gcd to resp_msg_$_NOT__Y_7.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1085 in gcd to resp_msg_$_NOT__Y_8.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1084 in gcd to resp_msg_$_NOT__Y_9.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1083 in gcd to resp_msg_$_NOT__Y_10.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1082 in gcd to resp_msg_$_NOT__Y_11.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1081 in gcd to resp_msg_$_NOT__Y_12.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1080 in gcd to resp_msg_$_NOT__Y_13.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1079 in gcd to ctrl.b_reg_en_$_NAND__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1078 in gcd to ctrl.a_reg_en_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1077 in gcd to dpath.a_mux$out_15__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1074 in gcd to resp_msg_$_XOR__Y_1.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1070 in gcd to dpath.a_mux$out_14__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1062 in gcd to dpath.a_mux$out_13__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1055 in gcd to dpath.a_mux$out_12__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1047 in gcd to dpath.a_mux$out_11__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1040 in gcd to dpath.a_mux$out_10__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1032 in gcd to dpath.a_mux$out_9__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1024 in gcd to dpath.a_mux$out_8__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1018 in gcd to dpath.a_mux$out_7__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1011 in gcd to dpath.a_mux$out_6__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1003 in gcd to dpath.a_mux$out_5__$_MUX__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$936 in gcd to resp_rdy_$_AND__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$929 in gcd to req_val_$_AND__B.
+Rename wire $abc$837$auto$fsm_map.cc:170:map_fsm$238[2] in gcd to ctrl.state.out_2__reg_p_D.
+Rename wire $abc$837$auto$fsm_map.cc:170:map_fsm$238[1] in gcd to ctrl.state.out_1__reg_p_D.
+Rename wire $abc$837$auto$fsm_map.cc:170:map_fsm$238[0] in gcd to req_rdy_reg_p_D.
+Rename wire $abc$837$new_n282_ in gcd to dpath.a_mux$out_4__$_MUX__Y_A.
+Rename wire $abc$837$new_n276_ in gcd to dpath.a_mux$out_3__$_MUX__Y_A.
+Rename wire $abc$837$new_n269_ in gcd to dpath.a_mux$out_2__$_MUX__Y_A.
+Rename wire $abc$837$new_n263_ in gcd to dpath.a_mux$out_1__$_MUX__Y_A.
+Rename wire $abc$837$new_n258_ in gcd to dpath.a_mux$out_0__$_MUX__Y_A.
+Rename wire $abc$837$new_n221_ in gcd to resp_val_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n363_ in gcd to dpath.a_mux$out_15__$_MUX__Y_A.
+Rename wire $abc$837$new_n360_ in gcd to resp_msg_$_XOR__Y_1_A.
+Rename wire $abc$837$new_n356_ in gcd to dpath.a_mux$out_14__$_MUX__Y_A.
+Rename wire $abc$837$new_n348_ in gcd to dpath.a_mux$out_13__$_MUX__Y_A.
+Rename wire $abc$837$new_n341_ in gcd to dpath.a_mux$out_12__$_MUX__Y_A.
+Rename wire $abc$837$new_n333_ in gcd to dpath.a_mux$out_11__$_MUX__Y_A.
+Rename wire $abc$837$new_n326_ in gcd to dpath.a_mux$out_10__$_MUX__Y_A.
+Rename wire $abc$837$new_n318_ in gcd to dpath.a_mux$out_9__$_MUX__Y_A.
+Rename wire $abc$837$new_n310_ in gcd to dpath.a_mux$out_8__$_MUX__Y_A.
+Rename wire $abc$837$new_n304_ in gcd to dpath.a_mux$out_7__$_MUX__Y_A.
+Rename wire $abc$837$new_n297_ in gcd to dpath.a_mux$out_6__$_MUX__Y_A.
+Rename wire $abc$837$new_n289_ in gcd to dpath.a_mux$out_5__$_MUX__Y_A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$995 in gcd to dpath.a_mux$out_4__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$989 in gcd to dpath.a_mux$out_3__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$982 in gcd to dpath.a_mux$out_2__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$976 in gcd to dpath.a_mux$out_1__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$971 in gcd to dpath.a_mux$out_0__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$947 in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$942 in gcd to req_rdy_reg_p_D_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$934 in gcd to resp_val_$_ANDNOT__Y_B_$_ORNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$932 in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1073 in gcd to resp_msg_$_XOR__Y_1_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1031 in gcd to dpath.a_mux$out_9__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1023 in gcd to dpath.a_mux$out_8__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1017 in gcd to dpath.a_mux$out_7__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1010 in gcd to dpath.a_mux$out_6__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1002 in gcd to dpath.a_mux$out_5__$_MUX__Y_A_$_OR__Y.
+Rename wire $abc$837$new_n223_ in gcd to resp_rdy_$_AND__B_Y.
+Rename wire $abc$837$new_n216_ in gcd to req_val_$_AND__B_Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1076 in gcd to dpath.a_mux$out_15__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1069 in gcd to dpath.a_mux$out_14__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1061 in gcd to dpath.a_mux$out_13__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1054 in gcd to dpath.a_mux$out_12__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1046 in gcd to dpath.a_mux$out_11__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1039 in gcd to dpath.a_mux$out_10__$_MUX__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$946 in gcd to ctrl.state.out_1__$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$945 in gcd to resp_rdy_$_AND__B_Y_$_OR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$940 in gcd to req_val_$_AND__B_Y_$_OR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$938 in gcd to ctrl.state.out_1__$_ANDNOT__A_1.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$937 in gcd to resp_rdy_$_AND__B_Y_$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$930 in gcd to req_val_$_AND__B_Y_$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$902 in gcd to dpath.a_lt_b$in0_0__$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$901 in gcd to dpath.a_lt_b$in0_1__$_XNOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$900 in gcd to dpath.a_lt_b$in0_1__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$898 in gcd to dpath.a_lt_b$in0_2__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$895 in gcd to dpath.a_lt_b$in0_2__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$894 in gcd to dpath.a_lt_b$in0_3__$_XNOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$893 in gcd to dpath.a_lt_b$in0_3__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$890 in gcd to dpath.a_lt_b$in0_4__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$885 in gcd to dpath.a_lt_b$in0_4__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$884 in gcd to dpath.a_lt_b$in0_5__$_XNOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$883 in gcd to dpath.a_lt_b$in0_5__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$881 in gcd to dpath.a_lt_b$in0_6__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$878 in gcd to dpath.a_lt_b$in0_6__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$877 in gcd to dpath.a_lt_b$in0_7__$_XNOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$876 in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$872 in gcd to dpath.a_lt_b$in0_8__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$865 in gcd to dpath.a_lt_b$in0_8__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$864 in gcd to dpath.a_lt_b$in0_9__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$863 in gcd to dpath.a_lt_b$in0_9__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$861 in gcd to dpath.a_lt_b$in0_10__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$858 in gcd to dpath.a_lt_b$in0_10__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$857 in gcd to dpath.a_lt_b$in0_11__$_XNOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$856 in gcd to dpath.a_lt_b$in0_11__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$853 in gcd to dpath.a_lt_b$in0_12__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$848 in gcd to dpath.a_lt_b$in0_12__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$847 in gcd to dpath.a_lt_b$in0_13__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$846 in gcd to dpath.a_lt_b$in0_13__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$844 in gcd to dpath.a_lt_b$in0_14__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$841 in gcd to dpath.a_lt_b$in0_14__$_ORNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$840 in gcd to dpath.a_lt_b$in0_15__$_XOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$839 in gcd to dpath.a_lt_b$in0_15__$_ANDNOT__A.
+Rename wire $abc$837$new_n278_ in gcd to dpath.a_mux$out_4__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n281_ in gcd to dpath.a_mux$out_4__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n271_ in gcd to dpath.a_mux$out_3__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n275_ in gcd to dpath.a_mux$out_3__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n265_ in gcd to dpath.a_mux$out_2__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n268_ in gcd to dpath.a_mux$out_2__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n260_ in gcd to dpath.a_mux$out_1__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n262_ in gcd to dpath.a_mux$out_1__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n254_ in gcd to dpath.a_mux$out_0__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n257_ in gcd to dpath.a_mux$out_0__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n231_ in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y_B.
+Rename wire $abc$837$new_n233_ in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y_A.
+Rename wire $abc$837$new_n226_ in gcd to req_rdy_reg_p_D_$_OR__Y_B.
+Rename wire $abc$837$new_n228_ in gcd to req_rdy_reg_p_D_$_OR__Y_A.
+Rename wire $abc$837$new_n354_ in gcd to resp_msg_$_NOT__Y_A.
+Rename wire $abc$837$new_n346_ in gcd to resp_msg_$_NOT__Y_1_A.
+Rename wire $abc$837$new_n339_ in gcd to resp_msg_$_NOT__Y_2_A.
+Rename wire $abc$837$new_n331_ in gcd to resp_msg_$_NOT__Y_3_A.
+Rename wire $abc$837$new_n324_ in gcd to resp_msg_$_NOT__Y_4_A.
+Rename wire $abc$837$new_n316_ in gcd to resp_msg_$_NOT__Y_5_A.
+Rename wire $abc$837$new_n308_ in gcd to resp_msg_$_NOT__Y_6_A.
+Rename wire $abc$837$new_n302_ in gcd to resp_msg_$_NOT__Y_7_A.
+Rename wire $abc$837$new_n295_ in gcd to resp_msg_$_NOT__Y_8_A.
+Rename wire $abc$837$new_n287_ in gcd to resp_msg_$_NOT__Y_9_A.
+Rename wire $abc$837$new_n280_ in gcd to resp_msg_$_NOT__Y_10_A.
+Rename wire $abc$837$new_n274_ in gcd to resp_msg_$_NOT__Y_11_A.
+Rename wire $abc$837$new_n267_ in gcd to resp_msg_$_NOT__Y_12_A.
+Rename wire $abc$837$new_n261_ in gcd to resp_msg_$_NOT__Y_13_A.
+Rename wire $abc$837$new_n220_ in gcd to resp_val_$_ANDNOT__Y_A.
+Rename wire $abc$837$new_n252_ in gcd to ctrl.b_reg_en_$_NAND__Y_A.
+Rename wire $abc$837$new_n284_ in gcd to dpath.a_mux$out_5__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n288_ in gcd to dpath.a_mux$out_5__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n215_ in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y_B.
+Rename wire $abc$837$new_n218_ in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y_A.
+Rename wire $abc$837$new_n127_ in gcd to resp_msg_$_XOR__Y_1_B.
+Rename wire $abc$837$new_n358_ in gcd to dpath.a_mux$out_15__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n362_ in gcd to dpath.a_mux$out_15__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n350_ in gcd to dpath.a_mux$out_14__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n355_ in gcd to dpath.a_mux$out_14__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n343_ in gcd to dpath.a_mux$out_13__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n347_ in gcd to dpath.a_mux$out_13__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n335_ in gcd to dpath.a_mux$out_12__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n340_ in gcd to dpath.a_mux$out_12__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n328_ in gcd to dpath.a_mux$out_11__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n332_ in gcd to dpath.a_mux$out_11__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n359_ in gcd to resp_msg_$_XOR__Y_1_A_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n128_ in gcd to resp_msg_$_XOR__Y_1_A_$_ANDNOT__Y_A.
+Rename wire $abc$837$new_n312_ in gcd to dpath.a_mux$out_9__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n317_ in gcd to dpath.a_mux$out_9__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n306_ in gcd to dpath.a_mux$out_8__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n309_ in gcd to dpath.a_mux$out_8__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n299_ in gcd to dpath.a_mux$out_7__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n303_ in gcd to dpath.a_mux$out_7__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n291_ in gcd to dpath.a_mux$out_6__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n296_ in gcd to dpath.a_mux$out_6__$_MUX__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n320_ in gcd to dpath.a_mux$out_10__$_MUX__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n325_ in gcd to dpath.a_mux$out_10__$_MUX__Y_A_$_OR__Y_A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1000 in gcd to resp_msg_$_NOT__Y_9_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$997 in gcd to dpath.a_mux$out_5__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$994 in gcd to dpath.a_mux$out_4__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$993 in gcd to resp_msg_$_NOT__Y_10_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$991 in gcd to dpath.a_mux$out_4__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$988 in gcd to dpath.a_mux$out_3__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$987 in gcd to resp_msg_$_NOT__Y_11_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$984 in gcd to dpath.a_mux$out_3__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$981 in gcd to dpath.a_mux$out_2__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$980 in gcd to resp_msg_$_NOT__Y_12_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$978 in gcd to dpath.a_mux$out_2__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$975 in gcd to dpath.a_mux$out_1__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$974 in gcd to resp_msg_$_NOT__Y_13_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$973 in gcd to dpath.a_mux$out_1__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$970 in gcd to dpath.a_mux$out_0__$_MUX__Y_A_$_OR__Y_A_$_AND__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$967 in gcd to dpath.a_mux$out_0__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$965 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$944 in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$941 in gcd to req_rdy_reg_p_D_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$939 in gcd to req_rdy_reg_p_D_$_OR__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$933 in gcd to resp_val_$_ANDNOT__Y_A_$_NOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$931 in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$928 in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1075 in gcd to dpath.a_mux$out_15__$_MUX__Y_A_$_OR__Y_A_$_AND__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1072 in gcd to resp_msg_$_XOR__Y_1_A_$_ANDNOT__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1071 in gcd to dpath.a_mux$out_15__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1068 in gcd to dpath.a_mux$out_14__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1067 in gcd to resp_msg_$_NOT__Y_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1063 in gcd to dpath.a_mux$out_14__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1060 in gcd to dpath.a_mux$out_13__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1059 in gcd to resp_msg_$_NOT__Y_1_A_$_XNOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1056 in gcd to dpath.a_mux$out_13__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1053 in gcd to dpath.a_mux$out_12__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1052 in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1048 in gcd to dpath.a_mux$out_12__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1045 in gcd to dpath.a_mux$out_11__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1044 in gcd to resp_msg_$_NOT__Y_3_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1041 in gcd to dpath.a_mux$out_11__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1038 in gcd to dpath.a_mux$out_10__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1037 in gcd to resp_msg_$_NOT__Y_4_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1033 in gcd to dpath.a_mux$out_10__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1030 in gcd to dpath.a_mux$out_9__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1029 in gcd to resp_msg_$_NOT__Y_5_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1025 in gcd to dpath.a_mux$out_9__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1022 in gcd to dpath.a_mux$out_8__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1021 in gcd to resp_msg_$_NOT__Y_6_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1019 in gcd to dpath.a_mux$out_8__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1016 in gcd to dpath.a_mux$out_7__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1015 in gcd to resp_msg_$_NOT__Y_7_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1012 in gcd to dpath.a_mux$out_7__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1009 in gcd to dpath.a_mux$out_6__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1008 in gcd to resp_msg_$_NOT__Y_8_A_$_XOR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1004 in gcd to dpath.a_mux$out_6__$_MUX__Y_A_$_OR__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1001 in gcd to dpath.a_mux$out_5__$_MUX__Y_A_$_OR__Y_A_$_ANDNOT__Y.
+Rename wire $abc$837$new_n232_ in gcd to resp_rdy_$_AND__B_Y_$_OR__A_Y.
+Rename wire $abc$837$new_n227_ in gcd to req_val_$_AND__B_Y_$_OR__A_Y.
+Rename wire $abc$837$new_n225_ in gcd to ctrl.state.out_1__$_ANDNOT__A_1_Y.
+Rename wire $abc$837$new_n224_ in gcd to resp_rdy_$_AND__B_Y_$_ORNOT__B_Y.
+Rename wire $abc$837$new_n217_ in gcd to req_val_$_AND__B_Y_$_ORNOT__B_Y.
+Rename wire $abc$837$new_n189_ in gcd to dpath.a_lt_b$in0_0__$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n188_ in gcd to dpath.a_lt_b$in0_1__$_XNOR__A_Y.
+Rename wire $abc$837$new_n187_ in gcd to dpath.a_lt_b$in0_1__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n185_ in gcd to dpath.a_lt_b$in0_2__$_XOR__A_Y.
+Rename wire $abc$837$new_n182_ in gcd to dpath.a_lt_b$in0_2__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n181_ in gcd to dpath.a_lt_b$in0_3__$_XNOR__A_Y.
+Rename wire $abc$837$new_n180_ in gcd to dpath.a_lt_b$in0_3__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n177_ in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y.
+Rename wire $abc$837$new_n172_ in gcd to dpath.a_lt_b$in0_4__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n171_ in gcd to dpath.a_lt_b$in0_5__$_XNOR__A_Y.
+Rename wire $abc$837$new_n170_ in gcd to dpath.a_lt_b$in0_5__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n168_ in gcd to dpath.a_lt_b$in0_6__$_XOR__A_Y.
+Rename wire $abc$837$new_n165_ in gcd to dpath.a_lt_b$in0_6__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n164_ in gcd to dpath.a_lt_b$in0_7__$_XNOR__A_Y.
+Rename wire $abc$837$new_n163_ in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n159_ in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y.
+Rename wire $abc$837$new_n152_ in gcd to dpath.a_lt_b$in0_8__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n151_ in gcd to dpath.a_lt_b$in0_9__$_XOR__A_Y.
+Rename wire $abc$837$new_n150_ in gcd to dpath.a_lt_b$in0_9__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n148_ in gcd to dpath.a_lt_b$in0_10__$_XOR__A_Y.
+Rename wire $abc$837$new_n145_ in gcd to dpath.a_lt_b$in0_10__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n144_ in gcd to dpath.a_lt_b$in0_11__$_XNOR__A_Y.
+Rename wire $abc$837$new_n143_ in gcd to dpath.a_lt_b$in0_11__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n140_ in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y.
+Rename wire $abc$837$new_n135_ in gcd to dpath.a_lt_b$in0_12__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n134_ in gcd to dpath.a_lt_b$in0_13__$_XOR__A_Y.
+Rename wire $abc$837$new_n133_ in gcd to dpath.a_lt_b$in0_13__$_ORNOT__B_Y.
+Rename wire $abc$837$new_n131_ in gcd to dpath.a_lt_b$in0_14__$_XOR__A_Y.
+Rename wire $abc$837$new_n126_ in gcd to dpath.a_lt_b$in0_15__$_ANDNOT__A_Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$999 in gcd to dpath.a_lt_b$in0_4__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$992 in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$986 in gcd to dpath.a_lt_b$in0_2__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$979 in gcd to dpath.a_lt_b$in0_2__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$969 in gcd to resp_val_$_ANDNOT__Y_A_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$966 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_OR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$904 in gcd to dpath.a_lt_b$in0_1__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$903 in gcd to dpath.a_lt_b$in0_1__$_XNOR__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$899 in gcd to dpath.a_lt_b$in0_2__$_XOR__A_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$897 in gcd to dpath.a_lt_b$in0_3__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$896 in gcd to dpath.a_lt_b$in0_2__$_ORNOT__B_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$891 in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$887 in gcd to dpath.a_lt_b$in0_5__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$886 in gcd to dpath.a_lt_b$in0_4__$_ORNOT__B_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$882 in gcd to dpath.a_lt_b$in0_6__$_XOR__A_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$880 in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$879 in gcd to dpath.a_lt_b$in0_6__$_ORNOT__B_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$873 in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y_$_OR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$867 in gcd to dpath.a_lt_b$in0_9__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$866 in gcd to dpath.a_lt_b$in0_8__$_ORNOT__B_Y_$_NOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$862 in gcd to dpath.a_lt_b$in0_10__$_XOR__A_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$860 in gcd to dpath.a_lt_b$in0_11__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$859 in gcd to dpath.a_lt_b$in0_10__$_ORNOT__B_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$854 in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$850 in gcd to dpath.a_lt_b$in0_13__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$849 in gcd to dpath.a_lt_b$in0_12__$_ORNOT__B_Y_$_NOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$845 in gcd to dpath.a_lt_b$in0_14__$_XOR__A_Y_$_NOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$843 in gcd to dpath.a_lt_b$in0_15__$_ANDNOT__A_Y_$_NOR__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$842 in gcd to resp_msg_$_XOR__Y_1_A_$_ANDNOT__Y_A_$_NOR__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1064 in gcd to dpath.a_lt_b$in0_14__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1058 in gcd to dpath.a_lt_b$in0_12__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1049 in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1043 in gcd to dpath.a_lt_b$in0_10__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1034 in gcd to dpath.a_lt_b$in0_10__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1028 in gcd to dpath.a_lt_b$in0_8__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1026 in gcd to dpath.a_lt_b$in0_9__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1020 in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y_$_NOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1014 in gcd to dpath.a_lt_b$in0_6__$_ORNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1005 in gcd to dpath.a_lt_b$in0_6__$_XOR__A_Y_$_NOT__A.
+Rename wire $abc$837$new_n286_ in gcd to resp_msg_$_NOT__Y_9_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n279_ in gcd to resp_msg_$_NOT__Y_10_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n273_ in gcd to resp_msg_$_NOT__Y_11_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n266_ in gcd to resp_msg_$_NOT__Y_12_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n191_ in gcd to resp_msg_$_NOT__Y_12_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n197_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A.
+Rename wire $abc$837$new_n230_ in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y_B_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n214_ in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y_B_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n351_ in gcd to resp_msg_$_NOT__Y_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n353_ in gcd to resp_msg_$_NOT__Y_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n345_ in gcd to resp_msg_$_NOT__Y_1_A_$_XNOR__Y_A.
+Rename wire $abc$837$new_n336_ in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n338_ in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n330_ in gcd to resp_msg_$_NOT__Y_3_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n321_ in gcd to resp_msg_$_NOT__Y_4_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n323_ in gcd to resp_msg_$_NOT__Y_4_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n313_ in gcd to resp_msg_$_NOT__Y_5_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n315_ in gcd to resp_msg_$_NOT__Y_5_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n307_ in gcd to resp_msg_$_NOT__Y_6_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n301_ in gcd to resp_msg_$_NOT__Y_7_A_$_XOR__Y_A.
+Rename wire $abc$837$new_n292_ in gcd to resp_msg_$_NOT__Y_8_A_$_XOR__Y_B.
+Rename wire $abc$837$new_n294_ in gcd to resp_msg_$_NOT__Y_8_A_$_XOR__Y_A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$943 in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y_B_$_ANDNOT__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$927 in gcd to ctrl.state.out_2__reg_p_D_$_OR__Y_B_$_ANDNOT__Y_B_$_ORNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$910 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1066 in gcd to resp_msg_$_NOT__Y_A_$_XOR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1051 in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1036 in gcd to resp_msg_$_NOT__Y_4_A_$_XOR__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1007 in gcd to resp_msg_$_NOT__Y_8_A_$_XOR__Y_A_$_ANDNOT__Y.
+Rename wire $abc$837$new_n190_ in gcd to dpath.a_lt_b$in0_1__$_XNOR__A_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n186_ in gcd to dpath.a_lt_b$in0_2__$_XOR__A_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n184_ in gcd to dpath.a_lt_b$in0_3__$_ORNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n183_ in gcd to dpath.a_lt_b$in0_2__$_ORNOT__B_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n178_ in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A_Y.
+Rename wire $abc$837$new_n174_ in gcd to dpath.a_lt_b$in0_5__$_ORNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n173_ in gcd to dpath.a_lt_b$in0_4__$_ORNOT__B_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n169_ in gcd to dpath.a_lt_b$in0_6__$_XOR__A_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n167_ in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n166_ in gcd to dpath.a_lt_b$in0_6__$_ORNOT__B_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n160_ in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y_$_OR__A_Y.
+Rename wire $abc$837$new_n154_ in gcd to dpath.a_lt_b$in0_9__$_ORNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n153_ in gcd to dpath.a_lt_b$in0_8__$_ORNOT__B_Y_$_NOR__A_Y.
+Rename wire $abc$837$new_n149_ in gcd to dpath.a_lt_b$in0_10__$_XOR__A_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n147_ in gcd to dpath.a_lt_b$in0_11__$_ORNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n146_ in gcd to dpath.a_lt_b$in0_10__$_ORNOT__B_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n141_ in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOR__A_Y.
+Rename wire $abc$837$new_n137_ in gcd to dpath.a_lt_b$in0_13__$_ORNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n136_ in gcd to dpath.a_lt_b$in0_12__$_ORNOT__B_Y_$_NOR__A_Y.
+Rename wire $abc$837$new_n132_ in gcd to dpath.a_lt_b$in0_14__$_XOR__A_Y_$_NOR__A_Y.
+Rename wire $abc$837$new_n130_ in gcd to dpath.a_lt_b$in0_15__$_ANDNOT__A_Y_$_NOR__B_Y.
+Rename wire $abc$837$new_n129_ in gcd to resp_msg_$_XOR__Y_1_A_$_ANDNOT__Y_A_$_NOR__A_Y.
+Rename wire $abc$837$new_n256_ in gcd to resp_val_$_ANDNOT__Y_A_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n253_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_OR__A_Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$998 in gcd to resp_msg_$_NOT__Y_10_A_$_XOR__Y_B_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$985 in gcd to resp_msg_$_NOT__Y_12_A_$_XOR__Y_B_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$968 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ORNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$926 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$906 in gcd to dpath.a_lt_b$in0_3__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$905 in gcd to dpath.a_lt_b$in0_2__$_XOR__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$892 in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$889 in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$888 in gcd to dpath.a_lt_b$in0_6__$_XOR__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$874 in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y_$_OR__A_Y_$_ANDNOT__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$869 in gcd to dpath.a_lt_b$in0_11__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$868 in gcd to dpath.a_lt_b$in0_10__$_XOR__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$855 in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOR__A_Y_$_AND__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$852 in gcd to dpath.a_lt_b$in0_15__$_ANDNOT__A_Y_$_NOR__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$851 in gcd to dpath.a_lt_b$in0_14__$_XOR__A_Y_$_NOR__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1065 in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOR__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1057 in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_B_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1042 in gcd to resp_msg_$_NOT__Y_4_A_$_XOR__Y_B_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1035 in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y_$_OR__A_Y_$_NOR__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1027 in gcd to resp_msg_$_NOT__Y_6_A_$_XOR__Y_B_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1013 in gcd to resp_msg_$_NOT__Y_8_A_$_XOR__Y_B_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1006 in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A_Y_$_NOR__B.
+Rename wire $abc$837$new_n285_ in gcd to dpath.a_lt_b$in0_4__$_ORNOT__B_Y_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n272_ in gcd to dpath.a_lt_b$in0_2__$_ORNOT__B_Y_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n255_ in gcd to resp_val_$_ANDNOT__Y_A_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n213_ in gcd to ctrl.state.out_1__reg_p_D_$_OR__Y_B_$_ANDNOT__Y_B_$_OR__Y_A.
+Rename wire $abc$837$new_n196_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n158_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y_A.
+Rename wire $abc$837$new_n352_ in gcd to resp_msg_$_NOT__Y_A_$_XOR__Y_A_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n344_ in gcd to dpath.a_lt_b$in0_12__$_ORNOT__B_Y_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n337_ in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_A_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n156_ in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_A_$_ANDNOT__Y_A.
+Rename wire $abc$837$new_n329_ in gcd to dpath.a_lt_b$in0_10__$_ORNOT__B_Y_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n314_ in gcd to dpath.a_lt_b$in0_8__$_ORNOT__B_Y_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n322_ in gcd to resp_msg_$_NOT__Y_4_A_$_XOR__Y_A_$_ANDNOT__Y_B.
+Rename wire $abc$837$new_n300_ in gcd to dpath.a_lt_b$in0_6__$_ORNOT__B_Y_$_ANDNOT__A_B.
+Rename wire $abc$837$new_n293_ in gcd to resp_msg_$_NOT__Y_8_A_$_XOR__Y_A_$_ANDNOT__Y_B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$909 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y_B_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$871 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y_A_$_ANDNOT__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$1050 in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_A_$_ANDNOT__Y_B_$_ANDNOT__Y.
+Rename wire $abc$837$new_n192_ in gcd to dpath.a_lt_b$in0_2__$_XOR__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n179_ in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n176_ in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n175_ in gcd to dpath.a_lt_b$in0_6__$_XOR__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n161_ in gcd to dpath.a_lt_b$in0_8__$_XOR__A_Y_$_OR__A_Y_$_ANDNOT__B_Y.
+Rename wire $abc$837$new_n155_ in gcd to dpath.a_lt_b$in0_10__$_XOR__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n142_ in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOR__A_Y_$_AND__A_Y.
+Rename wire $abc$837$new_n139_ in gcd to dpath.a_lt_b$in0_15__$_ANDNOT__A_Y_$_NOR__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n138_ in gcd to dpath.a_lt_b$in0_14__$_XOR__A_Y_$_NOR__A_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n193_ in gcd to dpath.a_lt_b$in0_3__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A_Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$908 in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$907 in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$875 in gcd to dpath.a_lt_b$in0_12__$_XOR__A_Y_$_NOR__A_Y_$_AND__A_Y_$_AND__B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$870 in gcd to resp_msg_$_NOT__Y_2_A_$_XOR__Y_A_$_ANDNOT__Y_A_$_ANDNOT__B.
+Rename wire $abc$837$new_n212_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A.
+Rename wire $abc$837$new_n162_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y_B_$_ANDNOT__Y_A.
+Rename wire $abc$837$new_n157_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_ANDNOT__Y_A_$_ANDNOT__Y_B.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$925 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y.
+Rename wire $abc$837$new_n194_ in gcd to dpath.a_lt_b$in0_4__$_XOR__A_Y_$_ORNOT__A_Y_$_ANDNOT__B_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n195_ in gcd to dpath.a_lt_b$in0_7__$_ORNOT__B_Y_$_ANDNOT__A_Y_$_ANDNOT__A_Y_$_ANDNOT__A_Y.
+Rename wire $abc$837$new_n204_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B.
+Rename wire $abc$837$new_n211_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$924 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$917 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y.
+Rename wire $abc$837$new_n207_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n210_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n200_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_B.
+Rename wire $abc$837$new_n203_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$923 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$920 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$916 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$913 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_B_$_OR__Y.
+Rename wire $abc$837$new_n208_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n209_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n205_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_B_$_OR__Y_B.
+Rename wire $abc$837$new_n206_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_B_$_OR__Y_A.
+Rename wire $abc$837$new_n201_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_A_$_OR__Y_B.
+Rename wire $abc$837$new_n202_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_A_$_OR__Y_A.
+Rename wire $abc$837$new_n198_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_B_$_OR__Y_B.
+Rename wire $abc$837$new_n199_ in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_B_$_OR__Y_A.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$922 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_A_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$921 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_A_$_OR__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$919 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_B_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$918 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_A_$_OR__Y_B_$_OR__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$915 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_A_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$914 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_A_$_OR__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$912 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_B_$_OR__Y_A_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$911 in gcd to ctrl.b_reg_en_$_NAND__Y_A_$_NAND__Y_A_$_OR__B_A_$_OR__Y_B_$_OR__Y_B_$_OR__Y_B_$_OR__Y.
+Rename cell $abc$837$auto$blifparse.cc:386:parse_blif$964 in gcd to ctrl.state.out_2__$_ORNOT__B.
+Rename wire $abc$837$new_n251_ in gcd to ctrl.state.out_2__$_ORNOT__B_Y.
+Renamed 1057 objects in module gcd (21 iterations).
+ERROR: TCL interpreter returned an error: invalid command name "clockgate"
