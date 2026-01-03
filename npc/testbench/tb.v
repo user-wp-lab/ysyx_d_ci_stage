@@ -90,7 +90,7 @@ wire [31:0] addr_lsu;
 assign addr_lsu = (io_lsu_addr>>2) - MEM_BASE;  // 内存访问仍用>>2，串口访问会跳过此逻辑
 // 定义串口地址（匹配C代码中的SERIAL_PORT）
 localparam SERIAL_PORT = 32'h10000000;
-localparam SERIAL_RANGE = 32'h10000008;
+// localparam SERIAL_RANGE = 32'h10000008;
 always @(posedge clock) begin
   if (reset) begin
     io_lsu_respValid <= 1'b0;
@@ -109,10 +109,10 @@ always @(posedge clock) begin
         $display("[UART][%0t] 输出字符: '%c' (ASCII=0x%02x)", $time, putch_char, putch_char);
         io_lsu_respValid <= 1'b1;  // 串口写操作响应
       end
-      else if ((io_lsu_addr >= SERIAL_PORT) && (io_lsu_addr <= SERIAL_RANGE) && io_lsu_wen) begin
-        io_lsu_respValid <= 1'b1;
-        $display("UART_init\n");
-      end
+      // else if ((io_lsu_addr >= SERIAL_PORT) && (io_lsu_addr <= SERIAL_RANGE) && io_lsu_wen) begin
+      //   io_lsu_respValid <= 1'b1;
+      //   $display("UART_init\n");
+      // end
       // 原有逻辑：普通内存访问（保留>>2的地址计算）
       else if ((io_lsu_addr >= MEM_BASE) && (io_lsu_addr < MEM_BASE + MEM_SIZE_B)) begin
         // 写操作（sb/sh/sw）：按wmask逐字节写入8位内存
